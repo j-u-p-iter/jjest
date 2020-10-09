@@ -1,2 +1,2 @@
-# jjest
+# tester
 Custom test runner
