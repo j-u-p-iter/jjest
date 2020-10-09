@@ -1,2 +1,2 @@
-# tester
+# trun
 Custom test runner
