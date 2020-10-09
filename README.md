@@ -1,2 +1,2 @@
-# runTest
+# testit
 Custom test runner
