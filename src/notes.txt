@@ -1,0 +1,92 @@
+Schema of the process
+
+
+## Loader loads the files
+Loader => files
+Good example: https://github.com/Testy/TestyTs/blob/master/src/lib/utils/testsLoader.ts
+
+
+## Queue (describe, it, ...) pushes methods into appropriate arrays
+
+- creates TestSuite. Each TestSuite has its own describes, its and etc.
+  this.describes.push(describe);
+  this.its.push(it);
+
+  How it happens here: https://github.com/philipszdavido/kwuo/blob/master/lib/index.js
+
+- creates Map { fileName: TestSuite }
+
+
+## Runner runs each queue. 
+Good example: https://github.com/twosmalltrees/pretzel-test/blob/master/src/runner.ts
+
+Goes through each fileName in the map, prepared on the previous step and run each queue.
+
+If there're errors, it emits events about errors.
+If there're successes, it emits events about successes.
+
+
+## Reporter listens success and error events and logs appropriate messages.
+Good example: https://github.com/twosmalltrees/pretzel-test/blob/master/src/reporter.ts
+
+
+## It would be better to have additionally the Logger, but we'll stay with standard console.log for the moment.
+
+
+Working principle of Trun.
+
+Trun consists of several building blocks:
+
+- Config;
+- Loader;
+- Queue;
+- Runner;
+- Reporter.
+
+Each of this part has it's own responsibility.
+
+
+# Loader
+
+Everything starts from Loader.
+
+We point out the root folder for the Loader and it should load all the files recursively accorging to the pattern (**.spec.ts, for example). 
+We also should not be able to load files from node_modules folder and user should have possibility to point out any folder to exclude loading
+files from it.
+
+Good example: https://github.com/Testy/TestyTs/blob/master/src/lib/utils/testsLoader.ts
+
+
+User should have possibility to load configurations from "trun.config.js". So, during loading phase we read this config to extract necessary options. 
+
+Good example: https://github.com/Testy/TestyTs/blob/master/src/lib/cli/run.command.ts#L53
+
+After Loader finishes loading files paths - it puts it into files property.
+
+# Queue
+
+Queue loads files with Loader and extracts loaded files paths.
+
+The responsibility of Queue is to:
+- require each test suite; 
+- create for each file appropriate TestSuite instance.
+- push into appropriate places (beforeEachs, its and etc.) functions to run (specs to run).
+- store all tests suites into testsSuites property.
+
+
+# Runner
+
+The next step is to run all specs and it's Runner responsibility.
+
+Runner takes all testsSuites from Queue instance and run in appropriate order all of them.
+
+In case of successful passed tests it emmits successful event.
+In case of error it emmits appropriate error event.
+
+But it doesn't write anywhere messages. The goal is just to emit events.
+
+# Reporter
+
+For the logging messages the Reporter class is responsible.
+
+It listens all possible events and logs messages in an appropriate format.

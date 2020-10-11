@@ -22,6 +22,6 @@
     "@j.u.p.iter/jupiter-scripts": "^1.17.0"
   },
   "dependencies": {
-    "@j.u.p.iter/recursive-read-dir": "^0.0.2"
+    "@j.u.p.iter/recursive-read-dir": "^1.0.0"
   }
 }
