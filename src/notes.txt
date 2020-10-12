@@ -1,8 +1,8 @@
 Schema of the process
 
 
-## Loader loads the files
-Loader => files
+## Scanner
+Scanner => files
 Good example: https://github.com/Testy/TestyTs/blob/master/src/lib/utils/testsLoader.ts
 
 
@@ -38,7 +38,7 @@ Working principle of Trun.
 Trun consists of several building blocks:
 
 - Config;
-- Loader;
+- Scanner;
 - Queue;
 - Runner;
 - Reporter.
@@ -46,13 +46,13 @@ Trun consists of several building blocks:
 Each of this part has it's own responsibility.
 
 
-# Loader
+# Scanner
 
-Everything starts from Loader.
+Everything starts from Scanner.
 
-We point out the root folder for the Loader and it should load all the files recursively accorging to the pattern (**.spec.ts, for example). 
-We also should not be able to load files from node_modules folder and user should have possibility to point out any folder to exclude loading
-files from it.
+We point out the root folder for the Scanner and it should find all the files recursively accorging to the pattern (**.spec.ts, for example). 
+We also should not be able to search the files from node_modules folder and user should have possibility to point out any folder to exclude scanning
+files in it.
 
 Good example: https://github.com/Testy/TestyTs/blob/master/src/lib/utils/testsLoader.ts
 
@@ -90,3 +90,17 @@ But it doesn't write anywhere messages. The goal is just to emit events.
 For the logging messages the Reporter class is responsible.
 
 It listens all possible events and logs messages in an appropriate format.
+
+
+
+All the blocks communicate with each other through the event system:
+
+- After Scanner finishes scanning files - it emmits an appropriate event ("scannedWithSuccess") with all founded files;
+
+- Queue listens to the "scannedWithSuccess" event and handles putting in the queue all callbacks. After queue finishes it's part,
+  it emits an appropriate event "queuedInWithSuccess"
+
+- Runner listens to the "queuedInWithSuccess" event and runs all the tests in an appropriatte order after it was emmited.
+  And on success it emits "runTestsWithSuccess" event.
+
+- Reporter listens to the all events, emitted by all previous blocks and prints appropriate messages. 

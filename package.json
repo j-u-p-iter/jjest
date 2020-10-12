@@ -4,7 +4,7 @@
   "main": "dist/lib/index.js",
   "typings": "dist/types",
   "bin": {
-    "trun": "src/index.js"
+    "trun": "dist/lib/index.js"
   },
   "description": "Test runner",
   "repository": "git@github.com:j-u-p-iter/recursive-trun.git",
@@ -13,10 +13,12 @@
   "scripts": {
     "commit": "jupiter-scripts precommit --allowJs",
     "build": "jupiter-scripts build --module=CommonJS",
+    "build:watch": "watch 'yarn run build && yarn run changePermission' ./dist",
     "start": "yarn run build --watch",
     "lint": "jupiter-scripts lint --format codeFrame",
     "lint:fix": "yarn run lint --fix",
-    "test": "jupiter-scripts test"
+    "test": "jupiter-scripts test",
+    "changePermission": "chmod +x dist/lib/*.js"
   },
   "devDependencies": {
     "@j.u.p.iter/jupiter-scripts": "^1.17.0"
