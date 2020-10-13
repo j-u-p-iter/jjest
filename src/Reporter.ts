@@ -3,3 +3,15 @@
 // Listen events and log appropriate message
 // So, there's a class specially for reporting and we 
 // don't have console.log in multiple places of the module
+
+import { EventManager } from './EventManager';
+
+export class Reporter {
+  constructor(private eventManager: EventManager) {}
+
+  init() {
+    this.eventManager.emit('testSuiteStarted');
+
+    this.eventManager.on('testSuiteCompleted')
+  }
+}
