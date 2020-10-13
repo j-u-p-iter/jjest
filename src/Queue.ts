@@ -6,16 +6,14 @@ export class Queue {
   constructor(private eventManager: EventManager) {}
 
   public init() {
-    let testsSuites = [];
-
     this.eventManager.on('scanTestFiles', (testFiles) => {
-      for (const testFile in testFiles) {
+      const testsSuites = testFiles.map((testFile) => {
         const testSuite = new TestSuite(testFile);
 
         testsSuites.push(testSuite);
-      }
-    });
+      });
 
-    this.eventManager.emit('testsSuitesCreated', testsSuites);
+      this.eventManager.emit('createTestsSuites', testsSuites);
+    });
   }
 }

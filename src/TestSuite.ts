@@ -1,23 +1,23 @@
 export class TestSuite {
   private declareTestHelpers() {
     (global as any).it = (description, callback) => {
-      this.its.push({ 
-        description, 
-        callback,
+      this.its.push({
+        description,
+        callback
       });
     };
 
     global.beforeEach = (description, callback) => {
-      this.beforeEaches.push({ 
-        description, 
-        callback,
+      this.beforeEaches.push({
+        description,
+        callback
       });
     };
 
     global.afterEach = (description, callback) => {
-      this.afterEaches.push({ 
-        description, 
-        callback,
+      this.afterEaches.push({
+        description,
+        callback
       });
     };
   }
@@ -33,7 +33,7 @@ export class TestSuite {
   public beforeAlls = [];
   public beforeEaches = [];
 
-  public its = [];
+  public its: Array<{ description: string; callback: () => void }> = [];
 
   public afterEaches = [];
   public afterAlls = [];
