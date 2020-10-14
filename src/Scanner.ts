@@ -8,7 +8,10 @@ export class Scanner {
   public async scanTestFiles() {
     const testFiles = await readDir(
       process.cwd(), 
-      { format: Format.FILES },
+      { 
+        format: Format.FILES, 
+        dirPatternToExclude: 'node_modules',
+      },
     );
 
     this.eventManager.emit('scanTestFiles', testFiles);

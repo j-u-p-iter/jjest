@@ -1,5 +1,5 @@
 {
-  "name": "@j.u.p.iter/recursive-trun",
+  "name": "@j.u.p.iter/trun",
   "version": "0.0.3",
   "main": "dist/lib/index.js",
   "typings": "dist/types",
@@ -24,6 +24,6 @@
     "@j.u.p.iter/jupiter-scripts": "^1.17.0"
   },
   "dependencies": {
-    "@j.u.p.iter/recursive-read-dir": "^1.0.0"
+    "@j.u.p.iter/recursive-read-dir": "^1.1.0"
   }
 }

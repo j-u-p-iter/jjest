@@ -1,3 +1,10 @@
+export interface TestBlock {
+  description: string;
+  callback: () => void;
+}; 
+
+export type TestBlocks = TestBlock[];
+
 export class TestSuite {
   private declareTestHelpers() {
     (global as any).it = (description, callback) => {
@@ -7,14 +14,14 @@ export class TestSuite {
       });
     };
 
-    global.beforeEach = (description, callback) => {
+    (global as any).beforeEach = (description, callback) => {
       this.beforeEaches.push({
         description,
         callback
       });
     };
 
-    global.afterEach = (description, callback) => {
+    (global as any).afterEach = (description, callback) => {
       this.afterEaches.push({
         description,
         callback
@@ -30,11 +37,11 @@ export class TestSuite {
 
   public describes = [];
 
-  public beforeAlls = [];
-  public beforeEaches = [];
+  public beforeAlls: TestBlocks = [];
+  public beforeEaches: TestBlocks = [];
 
-  public its: Array<{ description: string; callback: () => void }> = [];
+  public its: TestBlocks = [];
 
-  public afterEaches = [];
-  public afterAlls = [];
+  public afterEaches: TestBlocks = [];
+  public afterAlls: TestBlocks = [];
 }

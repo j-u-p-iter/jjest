@@ -10,8 +10,16 @@ export class Reporter {
   constructor(private eventManager: EventManager) {}
 
   init() {
-    this.eventManager.emit('testSuiteStarted');
+    this.eventManager.on('scanTestFiles', (testFiles) => {
+      console.log(testFiles);
+    });
 
-    this.eventManager.on('testSuiteCompleted')
+    this.eventManager.emit('testSuiteStarted', () => {
+      console.log('testSuiteStarted');
+    });
+
+    this.eventManager.on('testSuiteCompleted', () => {
+      console.log('testSuiteCompleted');
+    });
   }
 }
