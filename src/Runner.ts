@@ -5,18 +5,8 @@ import { EventManager } from "./EventManager";
 import { TestSuite } from "./TestSuite";
 
 export class Runner {
-  private runIts(its: Array<{ description: string; callback: () => void }>) {
-    for (const it of its) {
-      try {
-        it.callback();
-      } catch (error) {}
-    }
-  }
-
   private runTestSuite(testSuite: TestSuite) {
     this.eventManager.emit("testSuiteStarted", testSuite);
-
-    this.runIts(testSuite.its);
 
     this.eventManager.emit("testSuiteCompleted", testSuite);
   }

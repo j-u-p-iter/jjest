@@ -1,6 +1,7 @@
-import { EventManager } from './EventManager';
-import { Scanner } from './Scanner';
-import { Reporter } from './Reporter';
+import { EventManager } from "./EventManager";
+import { Queue } from "./Queue";
+import { Reporter } from "./Reporter";
+import { Scanner } from "./Scanner";
 
 export class Trun {
   async run() {
@@ -8,6 +9,9 @@ export class Trun {
 
     const reporter = new Reporter(eventManager);
     reporter.init();
+
+    const queue = new Queue(eventManager);
+    await queue.init();
 
     const scanner = new Scanner(eventManager);
     await scanner.scanTestFiles();

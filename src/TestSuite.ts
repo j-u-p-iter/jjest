@@ -1,47 +1,46 @@
+import { Store } from "./Store";
+import { DescribeBlock, TestBlockType } from "./types";
+
 export interface TestBlock {
   description: string;
   callback: () => void;
-}; 
+}
 
 export type TestBlocks = TestBlock[];
 
-export class TestSuite {
-  private declareTestHelpers() {
-    (global as any).it = (description, callback) => {
-      this.its.push({
-        description,
-        callback
-      });
-    };
-
-    (global as any).beforeEach = (description, callback) => {
-      this.beforeEaches.push({
-        description,
-        callback
-      });
-    };
-
-    (global as any).afterEach = (description, callback) => {
-      this.afterEaches.push({
-        description,
-        callback
-      });
+export class TestSuite extends Store {
+  private createDescribe(description, fn): DescribeBlock {
+    return {
+      description,
+      fn,
+      type: TestBlockType.Describe,
+      children: [],
+      hooks: []
     };
   }
 
+  private declareTestHelpers() {
+    (global as any).describe = (description, fn) => {
+      this.dispatch({
+        type: "START_DESCRIBE",
+        payload: { describe: this.createDescribe(description, fn) }
+      });
+
+      console.log(this.getState());
+    };
+
+    (global as any).it = () => {};
+
+    (global as any).beforeEach = () => {};
+
+    (global as any).afterEach = () => {};
+  }
+
   constructor(public testFilePath) {
+    super();
+
     this.declareTestHelpers();
 
     require(testFilePath);
   }
-
-  public describes = [];
-
-  public beforeAlls: TestBlocks = [];
-  public beforeEaches: TestBlocks = [];
-
-  public its: TestBlocks = [];
-
-  public afterEaches: TestBlocks = [];
-  public afterAlls: TestBlocks = [];
 }

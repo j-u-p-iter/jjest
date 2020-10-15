@@ -1,25 +1,21 @@
 // https://github.com/twosmalltrees/pretzel-test/blob/master/src/reporter.ts
 //
 // Listen events and log appropriate message
-// So, there's a class specially for reporting and we 
+// So, there's a class specially for reporting and we
 // don't have console.log in multiple places of the module
 
-import { EventManager } from './EventManager';
+import { EventManager } from "./EventManager";
 
 export class Reporter {
   constructor(private eventManager: EventManager) {}
 
   init() {
-    this.eventManager.on('scanTestFiles', (testFiles) => {
-      console.log(testFiles);
+    this.eventManager.emit("testSuiteStarted", () => {
+      console.log("testSuiteStarted");
     });
 
-    this.eventManager.emit('testSuiteStarted', () => {
-      console.log('testSuiteStarted');
-    });
-
-    this.eventManager.on('testSuiteCompleted', () => {
-      console.log('testSuiteCompleted');
+    this.eventManager.on("testSuiteCompleted", () => {
+      console.log("testSuiteCompleted");
     });
   }
 }
