@@ -1,5 +1,5 @@
 import { Store } from "./Store";
-import { DescribeBlock, TestBlockType } from "./types";
+import { DescribeBlock, ItBlock, TestBlockType } from "./types";
 
 export interface TestBlock {
   description: string;
@@ -19,17 +19,39 @@ export class TestSuite extends Store {
     };
   }
 
+  private createIt(description, fn): ItBlock {
+    return {
+      description,
+      fn,
+      type: TestBlockType.It
+    };
+  }
+
   private declareTestHelpers() {
     (global as any).describe = (description, fn) => {
+      const newDescribe = this.createDescribe(description, fn);
+
       this.dispatch({
         type: "START_DESCRIBE",
-        payload: { describe: this.createDescribe(description, fn) }
+        payload: { describe: newDescribe }
+      });
+
+      fn();
+
+      this.dispatch({
+        type: "FINISH_DESCRIBE",
+        payload: { describe: newDescribe }
+      });
+    };
+
+    (global as any).it = (description, fn) => {
+      this.dispatch({
+        type: "RUN_IT",
+        payload: { it: this.createIt(description, fn) }
       });
 
       console.log(this.getState());
     };
-
-    (global as any).it = () => {};
 
     (global as any).beforeEach = () => {};
 

@@ -26,7 +26,7 @@ export interface ItBlock extends TestBlock {
   // we render errors not only during tests execution
   // but also after all tests have run
   // so, we need to store them
-  errors: Error[];
+  errors?: Error[];
 }
 
 export interface TestBlock {

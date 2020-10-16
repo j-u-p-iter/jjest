@@ -7,7 +7,6 @@ export class Queue {
 
   public init() {
     this.eventManager.on("scanTestFiles", testFiles => {
-      console.log(testFiles);
       const testsSuites = testFiles.map(testFile => {
         const testSuite = new TestSuite(testFile);
 
