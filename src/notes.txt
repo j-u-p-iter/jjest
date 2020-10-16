@@ -104,3 +104,123 @@ All the blocks communicate with each other through the event system:
   And on success it emits "runTestsWithSuccess" event.
 
 - Reporter listens to the all events, emitted by all previous blocks and prints appropriate messages. 
+
+
+
+
+Schema of running tests:
+
+- Run root describe block;
+- Root describe block runs all children blocks:
+  -- describe
+  -- afterEach
+  -- afterAll
+  -- beforeEach
+  -- beforeAll
+  -- it
+
+In the jest all these blocks are declared here:
+-- https://github.com/facebook/jest/blob/222565ab2d72ff1c3744ab9d019c5988b0daebd5/packages/jest-circus/src/index.ts
+
+During all blocks running we write into the store current state:
+-- all callbacks and their description
+
+In jest it happens here: https://github.com/facebook/jest/blob/e8e8146ef6feacc56f9153a16c69f627cfa34d49/packages/jest-circus/src/eventHandler.ts#L37-L91
+
+After we finish writing state for the file (in another words after we wrote all state), 
+we run all blocks, taking info about them from the state.
+
+In jest it happens here: https://github.com/facebook/jest/blob/e8e8146ef6feacc56f9153a16c69f627cfa34d49/packages/jest-circus/src/run.ts
+
+
+Root describe is mandatory. If it, afterEach, afterAll runs without root describe - we throw an error.
+
+Root describe write into the store the "currentDescribe" state. It's an object with children and description and parentDescribe.
+
+Each it, afterEach, afterAll during running push into currentDescribe's children array.
+
+After describe finishes execution it looks for the parentDescribe. If there's a parent describe
+it sets up parentDescribe as currentDescribe and continues execution.
+
+After all blockes finishes their execution we stop writing into the store and 
+start execution of all functions, that were written into the state on the previous step.
+
+Describe entity is the main structure test block, that can be described by next interface:
+
+enum TestBlockType {
+  Describe = 'describe',
+  It = 'it',
+};
+
+enum TestHookType {
+  BeforeAll = 'beforeAll',
+  BeforeEach = 'beforeEach',
+  AfterEach = 'afterEach', 
+  AfterAll = 'afterAll',
+};
+
+interface TestBlock {
+  // each "it" or "describe"  is nested into parent "describe" block
+  // and is stored in it's "children" prop
+  parent: DescribeBlock;
+  name: string;
+  fn: () => void;
+  type: TestBlockType;
+}
+
+inteface TestHook {
+  type: TestHookType; 
+  fn: () => void;
+}
+
+interface DescribeBlock extends TestBlock {
+  type: TestBllockType.Describe; 
+  children: TestBlock[] 
+  hooks: TestHook[];
+}
+
+interface ItBlock extends TestBlock {
+  type: TestBllockType.It; 
+  // we render errors not only during tests execution
+  // but also after all tests run
+  errors: ErrorType[];
+}
+
+Schema:
+
+We write state of each test block into Store's state.
+
+In the beginning of execution of each DescribeBlock we write into the "currentDescribeBlock" property
+currently running DescribeBlock
+
+In the end of execution of each DescribeBlock we write into the "currentDescribeBlock" property
+parrent of the DescribeBlock, that has finished execution.
+
+ROOT_DESCRIBE_RUN:
+  - creates DescribeBlock object with appropriate props;
+  - writes into Store's state this DescribeBlock into "currentDescribeBlock" property;
+
+  - if new hook has run
+    - creates appropriate TestHook object
+    - writes it into it's own "hooks" prop
+
+  - if new it has run
+    - creates appropriate ItBlock object 
+    - writes it into it's own "children" prop
+
+  - if new describe has run
+    - creates new DescribeBlock object;
+
+    - writes previous DescribeBlock into it's own "parent" prop;
+
+    - writes the current DescribeBlock into "children" prop of the previous DescribeBlock; 
+
+    - writes into Store's state this DescribeBlock into "currentDescribeBlock" property;
+
+    - if new hook has run
+      - creates appropriate TestHook object
+      - writes it into it's own "hooks" prop
+
+    - if new it has run
+      - creates appropriate ItBlock object 
+      - writes it into it's own "children" prop
