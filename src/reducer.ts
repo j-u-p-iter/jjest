@@ -1,4 +1,7 @@
 export const reducer = (state, action) => {
+  console.log("action:", action);
+  console.log("state:", state);
+
   switch (action.type) {
     case "START_DESCRIBE":
       if (state.currentDescribeBlock) {
@@ -24,11 +27,12 @@ export const reducer = (state, action) => {
          */
         state.rootDescribeBlock = state.currentDescribeBlock;
       }
+      break;
 
     case "RUN_IT":
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.children.push({
-          ...action.payload.describe,
+          ...action.payload.it,
           parent: state.currentDescribeBlock
         });
       } else {
@@ -36,6 +40,7 @@ export const reducer = (state, action) => {
           "You should put test in the describe block. Describe block is required."
         );
       }
+      break;
   }
 
   return state;
