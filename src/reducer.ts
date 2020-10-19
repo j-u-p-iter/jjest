@@ -1,7 +1,4 @@
 export const reducer = (state, action) => {
-  console.log("action:", action);
-  console.log("state:", state);
-
   switch (action.type) {
     case "START_DESCRIBE":
       const newDescribeBlock = {
