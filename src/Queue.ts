@@ -10,7 +10,7 @@ export class Queue {
       const testsSuites = testFiles.map(testFile => {
         const testSuite = new TestSuite(testFile);
 
-        testsSuites.push(testSuite);
+        return testSuite;
       });
 
       this.eventManager.emit("createTestsSuites", testsSuites);

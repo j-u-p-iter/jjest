@@ -1,5 +1,11 @@
 import { Store } from "./Store";
-import { DescribeBlock, ItBlock, TestBlockType } from "./types";
+import {
+  DescribeBlock,
+  ItBlock,
+  TestBlockType,
+  TestHook,
+  TestHookType
+} from "./types";
 
 export interface TestBlock {
   description: string;
@@ -27,6 +33,10 @@ export class TestSuite extends Store {
     };
   }
 
+  private createTestHook(type: TestHookType, fn: () => void): TestHook {
+    return { fn, type };
+  }
+
   private declareTestHelpers() {
     (global as any).describe = (description, fn) => {
       const newDescribe = this.createDescribe(description, fn);
@@ -49,13 +59,25 @@ export class TestSuite extends Store {
         type: "RUN_IT",
         payload: { it: this.createIt(description, fn) }
       });
-
-      console.log(this.getState());
     };
 
-    (global as any).beforeEach = () => {};
+    (global as any).beforeEach = fn => {
+      this.dispatch({
+        type: "RUN_BEFORE_EACH",
+        payload: {
+          beforeEach: this.createTestHook(TestHookType.BeforeEach, fn)
+        }
+      });
+    };
 
-    (global as any).afterEach = () => {};
+    (global as any).afterEach = fn => {
+      this.dispatch({
+        type: "RUN_AFTER_EACH",
+        payload: {
+          afterEach: this.createTestHook(TestHookType.AfterEach, fn)
+        }
+      });
+    };
   }
 
   constructor(public testFilePath) {

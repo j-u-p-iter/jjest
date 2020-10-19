@@ -1,18 +1,22 @@
-import { STATE_SCOPE } from "./constants";
 import { reducer } from "./reducer";
+import { DescribeBlock } from "./types";
 
-const initialState = {
-  currentDescribeBlock: null
-};
+interface StoreState {
+  currentDescribeBlock: DescribeBlock | null;
+  rootDescribeBlock: DescribeBlock | null;
+}
 
 export class Store {
-  private [STATE_SCOPE] = initialState;
+  private state: StoreState = {
+    currentDescribeBlock: null,
+    rootDescribeBlock: null
+  };
 
   getState() {
-    return this[STATE_SCOPE];
+    return this.state;
   }
 
   dispatch(action) {
-    this[STATE_SCOPE] = reducer(this[STATE_SCOPE], action);
+    this.state = reducer(this.state, action);
   }
 }
