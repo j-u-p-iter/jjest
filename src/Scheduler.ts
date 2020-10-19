@@ -2,7 +2,7 @@ import { EventManager } from "./EventManager";
 
 import { TestSuite } from "./TestSuite";
 
-export class Queue {
+export class Scheduler {
   constructor(private eventManager: EventManager) {}
 
   public init() {

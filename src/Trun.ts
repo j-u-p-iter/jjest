@@ -1,5 +1,5 @@
 import { EventManager } from "./EventManager";
-import { Queue } from "./Queue";
+import { Scheduler } from "./Scheduler";
 import { Reporter } from "./Reporter";
 import { Runner } from "./Runner";
 import { Scanner } from "./Scanner";
@@ -14,8 +14,8 @@ export class Trun {
     const reporter = new Reporter(eventManager);
     reporter.init();
 
-    const queue = new Queue(eventManager);
-    await queue.init();
+    const scheduler = new Scheduler(eventManager);
+    await scheduler.init();
 
     const scanner = new Scanner(eventManager);
     await scanner.scanTestFiles();
