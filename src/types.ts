@@ -1,18 +1,19 @@
-export enum Status {
+export enum TestStatus {
+  INACTIVE = "inactive",
   ACTIVE = "active",
   COMPLETED = "completed"
 }
 
 export enum TestBlockType {
-  Describe = "describe",
-  It = "it"
+  DESCRIBE = "describe",
+  IT = "it"
 }
 
 export enum TestHookType {
-  BeforeAll = "beforeAll",
-  BeforeEach = "beforeEach",
-  AfterEach = "afterEach",
-  AfterAll = "afterAll"
+  BEFORE_ALL = "beforeAll",
+  BEFORE_EACH = "beforeEach",
+  AFTER_EACH = "afterEach",
+  AFTER_ALL = "afterAll"
 }
 
 export interface TestHook {
@@ -21,18 +22,18 @@ export interface TestHook {
 }
 
 export interface DescribeBlock extends TestBlock {
-  type: TestBlockType.Describe;
+  type: TestBlockType.DESCRIBE;
   children: TestBlock[];
   hooks: TestHook[];
 }
 
 export interface ItBlock extends TestBlock {
-  type: TestBlockType.It;
+  type: TestBlockType.IT;
   // we render errors not only during tests execution
   // but also after all tests have run
   // so, we need to store them
   errors?: Error[];
-  status: Status;
+  status: TestStatus;
 }
 
 export interface TestBlock {
@@ -43,4 +44,20 @@ export interface TestBlock {
   description: string;
   fn: () => void;
   type: TestBlockType;
+}
+
+export enum ActionType {
+  START_DESCRIBE = "START_DESCRIBE",
+
+  FINISH_DESCRIBE = "FINISH_DESCRIBE",
+
+  RUN_IT = "RUN_IT",
+
+  RUN_BEFORE_EACH = "RUN_BEFORE_EACH",
+
+  RUN_AFTER_EACH = "RUN_AFTER_EACH",
+
+  START_IT = "START_IT",
+
+  FINISH_IT = "FINISH_IT"
 }

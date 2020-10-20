@@ -1,10 +1,12 @@
 import { Store } from "./Store";
 import {
+  ActionType,
   DescribeBlock,
   ItBlock,
   TestBlockType,
   TestHook,
-  TestHookType
+  TestHookType,
+  TestStatus
 } from "./types";
 
 export interface TestBlock {
@@ -19,7 +21,7 @@ export class TestSuite extends Store {
     return {
       description,
       fn,
-      type: TestBlockType.Describe,
+      type: TestBlockType.DESCRIBE,
       children: [],
       hooks: []
     };
@@ -29,7 +31,8 @@ export class TestSuite extends Store {
     return {
       description,
       fn,
-      type: TestBlockType.It
+      type: TestBlockType.IT,
+      status: TestStatus.INACTIVE
     };
   }
 
@@ -42,39 +45,39 @@ export class TestSuite extends Store {
       const newDescribe = this.createDescribe(description, fn);
 
       this.dispatch({
-        type: "START_DESCRIBE",
+        type: ActionType.START_DESCRIBE,
         payload: { describe: newDescribe }
       });
 
       fn();
 
       this.dispatch({
-        type: "FINISH_DESCRIBE",
+        type: ActionType.FINISH_DESCRIBE,
         payload: { describe: newDescribe }
       });
     };
 
     (global as any).it = (description, fn) => {
       this.dispatch({
-        type: "RUN_IT",
+        type: ActionType.RUN_IT,
         payload: { it: this.createIt(description, fn) }
       });
     };
 
     (global as any).beforeEach = fn => {
       this.dispatch({
-        type: "RUN_BEFORE_EACH",
+        type: ActionType.RUN_BEFORE_EACH,
         payload: {
-          beforeEach: this.createTestHook(TestHookType.BeforeEach, fn)
+          beforeEach: this.createTestHook(TestHookType.BEFORE_EACH, fn)
         }
       });
     };
 
     (global as any).afterEach = fn => {
       this.dispatch({
-        type: "RUN_AFTER_EACH",
+        type: ActionType.RUN_AFTER_EACH,
         payload: {
-          afterEach: this.createTestHook(TestHookType.AfterEach, fn)
+          afterEach: this.createTestHook(TestHookType.AFTER_EACH, fn)
         }
       });
     };

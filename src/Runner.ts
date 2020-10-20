@@ -9,7 +9,7 @@ import { TestHookType } from "./types";
 export class Runner {
   private runBeforeEachHooks(hooks) {
     const resultHooks = hooks.filter(
-      ({ type }) => type === TestHookType.BeforeEach
+      ({ type }) => type === TestHookType.BEFORE_EACH
     );
 
     this.runHooks(resultHooks);
@@ -17,7 +17,7 @@ export class Runner {
 
   public runAfterEachHooks(hooks) {
     const resultHooks = hooks.filter(
-      ({ type }) => type === TestHookType.AfterEach
+      ({ type }) => type === TestHookType.AFTER_EACH
     );
 
     this.runHooks(resultHooks);
@@ -32,7 +32,7 @@ export class Runner {
   private runTestSuite(testSuite: TestSuite) {
     const rootDescribeBlock = testSuite.getState().rootDescribeBlock;
 
-    const run = (describeBlock) => {
+    const run = describeBlock => {
       for (const childTestBlock of describeBlock.children) {
         if (isDescribeBlock(childTestBlock)) {
           run(childTestBlock);
@@ -40,22 +40,28 @@ export class Runner {
           try {
             this.runBeforeEachHooks(childTestBlock.parent.hooks);
 
-            testSuite.dispatch({ type: "START_IT", payload: { it: childTestBlock } });
+            testSuite.dispatch({
+              type: "START_IT",
+              payload: { it: childTestBlock }
+            });
 
             childTestBlock.fn();
 
-            testSuite.dispatch({ type: "FINISH_IT", payload: { it: childTestBlock } });
+            testSuite.dispatch({
+              type: "FINISH_IT",
+              payload: { it: childTestBlock }
+            });
 
             console.log(childTestBlock);
 
-            testSuite.dispatch('')
+            testSuite.dispatch("");
             this.runAfterEachHooks(childTestBlock.parent.hooks);
           } catch (error) {
             console.error(error);
           }
         }
       }
-    }
+    };
 
     run(rootDescribeBlock);
   }

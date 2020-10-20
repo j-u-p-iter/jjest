@@ -1,18 +1,18 @@
 import { EventManager } from "./EventManager";
-import { Scheduler } from "./Scheduler";
 import { Reporter } from "./Reporter";
 import { Runner } from "./Runner";
 import { Scanner } from "./Scanner";
+import { Scheduler } from "./Scheduler";
 
 const eventManager = new EventManager();
 
 export class Trun {
   async run() {
     /**
-     * Contains actions, 
+     * Contains actions,
      * according to the order we run them.
      *
-     * We initialize these steps in vice versa order, cause 
+     * We initialize these steps in vice versa order, cause
      * communication is going through event emitter.
      */
     const sequence = [
@@ -44,7 +44,7 @@ export class Trun {
       () => {
         const runner = new Runner(eventManager);
         runner.init();
-      }, 
+      },
 
       /**
        * The fifth step is to report about results of running tests

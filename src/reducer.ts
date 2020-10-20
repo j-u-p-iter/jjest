@@ -1,6 +1,8 @@
+import { ActionType, TestStatus } from "./types";
+
 export const reducer = (state, action) => {
   switch (action.type) {
-    case "START_DESCRIBE":
+    case ActionType.START_DESCRIBE:
       const newDescribeBlock = {
         ...action.payload.describe,
         parent: state.currentDescribeBlock
@@ -28,7 +30,7 @@ export const reducer = (state, action) => {
       }
       break;
 
-    case "FINISH_DESCRIBE":
+    case ActionType.FINISH_DESCRIBE:
       if (state.currentDescribeBlock.parent) {
         state.currentDescribeBlock = state.currentDescribeBlock.parent;
       } else {
@@ -37,7 +39,7 @@ export const reducer = (state, action) => {
 
       break;
 
-    case "RUN_IT":
+    case ActionType.RUN_IT:
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.children.push({
           ...action.payload.it,
@@ -50,7 +52,7 @@ export const reducer = (state, action) => {
       }
       break;
 
-    case "RUN_BEFORE_EACH":
+    case ActionType.RUN_BEFORE_EACH:
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.hooks.push(action.payload.beforeEach);
       } else {
@@ -60,7 +62,7 @@ export const reducer = (state, action) => {
       }
       break;
 
-    case "RUN_AFTER_EACH":
+    case ActionType.RUN_AFTER_EACH:
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.hooks.push(action.payload.afterEach);
       } else {
@@ -70,12 +72,12 @@ export const reducer = (state, action) => {
       }
       break;
 
-    case "START_IT":
-      action.payload.it.status = 'active';
+    case ActionType.START_IT:
+      action.payload.it.status = TestStatus.ACTIVE;
       break;
 
-    case "FINISH_IT":
-      action.payload.it.status = 'completed';
+    case ActionType.FINISH_IT:
+      action.payload.it.status = TestStatus.COMPLETED;
       break;
   }
 
