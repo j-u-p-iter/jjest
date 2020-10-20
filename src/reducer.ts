@@ -69,6 +69,14 @@ export const reducer = (state, action) => {
         );
       }
       break;
+
+    case "START_IT":
+      action.payload.it.status = 'active';
+      break;
+
+    case "FINISH_IT":
+      action.payload.it.status = 'completed';
+      break;
   }
 
   return state;

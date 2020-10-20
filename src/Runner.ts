@@ -4,7 +4,7 @@
 import { EventManager } from "./EventManager";
 import { isDescribeBlock } from "./helpers";
 import { TestSuite } from "./TestSuite";
-import { DescribeBlock, TestHookType } from "./types";
+import { TestHookType } from "./types";
 
 export class Runner {
   private runBeforeEachHooks(hooks) {
@@ -29,25 +29,40 @@ export class Runner {
     }
   }
 
-  private runTestSuite(testBlock: DescribeBlock) {
-    for (const childTestBlock of testBlock.children) {
-      if (isDescribeBlock(childTestBlock)) {
-        this.runTestSuite(childTestBlock);
-      } else {
-        try {
-          this.runBeforeEachHooks(childTestBlock.parent.hooks);
-          childTestBlock.fn();
-          this.runAfterEachHooks(childTestBlock.parent.hooks);
-        } catch (error) {
-          console.error(error);
+  private runTestSuite(testSuite: TestSuite) {
+    const rootDescribeBlock = testSuite.getState().rootDescribeBlock;
+
+    const run = (describeBlock) => {
+      for (const childTestBlock of describeBlock.children) {
+        if (isDescribeBlock(childTestBlock)) {
+          run(childTestBlock);
+        } else {
+          try {
+            this.runBeforeEachHooks(childTestBlock.parent.hooks);
+
+            testSuite.dispatch({ type: "START_IT", payload: { it: childTestBlock } });
+
+            childTestBlock.fn();
+
+            testSuite.dispatch({ type: "FINISH_IT", payload: { it: childTestBlock } });
+
+            console.log(childTestBlock);
+
+            testSuite.dispatch('')
+            this.runAfterEachHooks(childTestBlock.parent.hooks);
+          } catch (error) {
+            console.error(error);
+          }
         }
       }
     }
+
+    run(rootDescribeBlock);
   }
 
   private runTestsSuites(testsSuites: TestSuite[]) {
     for (const testSuite of testsSuites) {
-      this.runTestSuite(testSuite.getState().rootDescribeBlock);
+      this.runTestSuite(testSuite);
     }
   }
 

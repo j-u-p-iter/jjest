@@ -1,3 +1,8 @@
+export enum Status {
+  ACTIVE = "active",
+  COMPLETED = "completed"
+}
+
 export enum TestBlockType {
   Describe = "describe",
   It = "it"
@@ -27,6 +32,7 @@ export interface ItBlock extends TestBlock {
   // but also after all tests have run
   // so, we need to store them
   errors?: Error[];
+  status: Status;
 }
 
 export interface TestBlock {
