@@ -1,4 +1,4 @@
-import { ActionType, TestStatus } from "./types";
+import { ActionType, ItStatus } from "./types";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -73,11 +73,11 @@ export const reducer = (state, action) => {
       break;
 
     case ActionType.START_IT:
-      action.payload.it.status = TestStatus.ACTIVE;
+      action.payload.it.status = ItStatus.RUNS;
       break;
 
     case ActionType.FINISH_IT:
-      action.payload.it.status = TestStatus.COMPLETED;
+      action.payload.it.status = ItStatus.PASSED;
       break;
   }
 

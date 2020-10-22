@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@j.u.p.iter/recursive-read-dir": "^1.2.0",
-    "ink": "^3.0.7"
+    "ink": "^3.0.7",
+    "react": "^17.0.0"
   }
 }

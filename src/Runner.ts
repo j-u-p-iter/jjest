@@ -4,7 +4,7 @@
 import { EventManager } from "./EventManager";
 import { isDescribeBlock } from "./helpers";
 import { TestSuite } from "./TestSuite";
-import { TestHookType } from "./types";
+import { TestHookType, TestSuiteStatus } from "./types";
 
 export class Runner {
   private runBeforeEachHooks(hooks) {
@@ -52,8 +52,6 @@ export class Runner {
               payload: { it: childTestBlock }
             });
 
-            console.log(childTestBlock);
-
             testSuite.dispatch("");
             this.runAfterEachHooks(childTestBlock.parent.hooks);
           } catch (error) {
@@ -63,7 +61,13 @@ export class Runner {
       }
     };
 
+    testSuite.setStatus(TestSuiteStatus.RUNS);
+    this.eventManager.emit('runTestSuite', testSuite);
+
     run(rootDescribeBlock);
+
+    testSuite.setStatus(TestSuiteStatus.FAILED);
+    this.eventManager.emit('finishTestSuite', testSuite);
   }
 
   private runTestsSuites(testsSuites: TestSuite[]) {

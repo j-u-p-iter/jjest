@@ -6,7 +6,8 @@ import {
   TestBlockType,
   TestHook,
   TestHookType,
-  TestStatus
+  ItStatus,
+  TestSuiteStatus,
 } from "./types";
 
 export interface TestBlock {
@@ -32,7 +33,7 @@ export class TestSuite extends Store {
       description,
       fn,
       type: TestBlockType.IT,
-      status: TestStatus.INACTIVE
+      status: ItStatus.INACTIVE
     };
   }
 
@@ -90,4 +91,10 @@ export class TestSuite extends Store {
 
     require(testFilePath);
   }
+
+  public setStatus(status: TestSuiteStatus) {
+    this.status = status;
+  }
+
+  public status: TestSuiteStatus = TestSuiteStatus.INACTIVE;
 }

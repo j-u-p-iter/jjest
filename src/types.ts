@@ -1,7 +1,15 @@
-export enum TestStatus {
+export enum TestSuiteStatus {
   INACTIVE = "inactive",
-  ACTIVE = "active",
-  COMPLETED = "completed"
+  RUNS = "runs",
+  PASSED = "passed",
+  FAILED = "failed"
+}
+
+export enum ItStatus {
+  INACTIVE = "inactive",
+  RUNS = "runs",
+  PASSED = "passed",
+  FAILED = "failed"
 }
 
 export enum TestBlockType {
@@ -33,7 +41,7 @@ export interface ItBlock extends TestBlock {
   // but also after all tests have run
   // so, we need to store them
   errors?: Error[];
-  status: TestStatus;
+  status: ItStatus;
 }
 
 export interface TestBlock {
@@ -60,4 +68,24 @@ export enum ActionType {
   START_IT = "START_IT",
 
   FINISH_IT = "FINISH_IT"
+}
+
+/**
+ * We need basePath and fileName to have separately to be able to add different colors.
+ *
+ */
+export interface ReportData {
+  [testSuitePath: string]: {
+    status: string;
+    duration: string;
+    basePath: string;
+    fileName: string;
+    resultTree: {
+      title: string;
+      children?: Array<{
+        title: string;
+        children?: any;
+      }>;
+    };
+  };
 }
