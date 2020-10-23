@@ -3,11 +3,11 @@ import {
   ActionType,
   DescribeBlock,
   ItBlock,
+  ItStatus,
   TestBlockType,
   TestHook,
   TestHookType,
-  ItStatus,
-  TestSuiteStatus,
+  TestSuiteStatus
 } from "./types";
 
 export interface TestBlock {

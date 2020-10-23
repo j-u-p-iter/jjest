@@ -62,12 +62,12 @@ export class Runner {
     };
 
     testSuite.setStatus(TestSuiteStatus.RUNS);
-    this.eventManager.emit('runTestSuite', testSuite);
+    this.eventManager.emit("runTestSuite", testSuite);
 
     run(rootDescribeBlock);
 
     testSuite.setStatus(TestSuiteStatus.FAILED);
-    this.eventManager.emit('finishTestSuite', testSuite);
+    this.eventManager.emit("finishTestSuite", testSuite);
   }
 
   private runTestsSuites(testsSuites: TestSuite[]) {

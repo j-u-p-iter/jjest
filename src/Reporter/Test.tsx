@@ -1,34 +1,34 @@
-import React from 'react';
-import { Box, Text } from 'ink';
+import { Box, Text } from "ink";
+import React from "react";
 
-import { TestSuiteStatus } from '../types';
+import { TestSuiteStatus } from "../types";
 
 const getBackgroundForStatus = (status: TestSuiteStatus) => {
-  switch(status) {
+  switch (status) {
     case TestSuiteStatus.RUNS:
-      return 'yellow';
+      return "yellow";
 
     case TestSuiteStatus.PASSED:
-      return 'green';
+      return "green";
 
     case TestSuiteStatus.FAILED:
-      return 'red';
+      return "red";
 
     default:
-      return 'red';
+      return "red";
   }
-}
+};
 
 export const Test = ({ status, path }) => {
   return (
     <Box>
-      <Text color='black' backgroundColor={getBackgroundForStatus(status)}>
+      <Text color="black" backgroundColor={getBackgroundForStatus(status)}>
         {status.toUpperCase()}
       </Text>
 
-      <Box marginLeft={1}> 
-        <Text>{path}</Text> 
+      <Box marginLeft={1}>
+        <Text>{path}</Text>
       </Box>
     </Box>
   );
-}
+};
