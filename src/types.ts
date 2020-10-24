@@ -1,3 +1,5 @@
+import { ItReport } from "./Report";
+
 export enum TestSuiteStatus {
   INACTIVE = "inactive",
   RUNS = "runs",
@@ -42,6 +44,10 @@ export interface ItBlock extends TestBlock {
   // so, we need to store them
   errors?: Error[];
   status: ItStatus;
+  // we use startTime and finishTime to calculate
+  // the duration of each ItBlock
+  startTime?: number;
+  finishTime?: number;
 }
 
 export interface TestBlock {
@@ -70,22 +76,7 @@ export enum ActionType {
   FINISH_IT = "FINISH_IT"
 }
 
-/**
- * We need basePath and fileName to have separately to be able to add different colors.
- *
- */
-export interface ReportData {
-  [testSuitePath: string]: {
-    status: string;
-    duration: string;
-    basePath: string;
-    fileName: string;
-    resultTree: {
-      title: string;
-      children?: Array<{
-        title: string;
-        children?: any;
-      }>;
-    };
-  };
+export interface ReportResultTree {
+  title: string;
+  children?: Array<ReportResultTree | ItReport>;
 }

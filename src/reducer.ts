@@ -74,10 +74,12 @@ export const reducer = (state, action) => {
 
     case ActionType.START_IT:
       action.payload.it.status = ItStatus.RUNS;
+      action.payload.it.startTime = Date.now();
       break;
 
     case ActionType.FINISH_IT:
       action.payload.it.status = ItStatus.PASSED;
+      action.payload.it.finishTime = Date.now();
       break;
   }
 

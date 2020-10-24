@@ -3,6 +3,7 @@
 // Here we run the queue, prepared by the Queue, for each TestSuite.
 import { EventManager } from "./EventManager";
 import { isDescribeBlock } from "./helpers";
+import { TestSuiteReport } from "./Report";
 import { TestSuite } from "./TestSuite";
 import { TestHookType, TestSuiteStatus } from "./types";
 
@@ -73,6 +74,7 @@ export class Runner {
   private runTestsSuites(testsSuites: TestSuite[]) {
     for (const testSuite of testsSuites) {
       this.runTestSuite(testSuite);
+      console.log(new TestSuiteReport(testSuite));
     }
   }
 
