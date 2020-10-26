@@ -3,7 +3,6 @@
 // Here we run the queue, prepared by the Queue, for each TestSuite.
 import { EventManager } from "./EventManager";
 import { isDescribeBlock } from "./helpers";
-import { TestSuiteReport } from "./Report";
 import { TestSuite } from "./TestSuite";
 import { TestHookType, TestSuiteStatus } from "./types";
 
@@ -63,18 +62,15 @@ export class Runner {
     };
 
     testSuite.setStatus(TestSuiteStatus.RUNS);
-    this.eventManager.emit("runTestSuite", testSuite);
 
     run(rootDescribeBlock);
 
     testSuite.setStatus(TestSuiteStatus.FAILED);
-    this.eventManager.emit("finishTestSuite", testSuite);
   }
 
   private runTestsSuites(testsSuites: TestSuite[]) {
     for (const testSuite of testsSuites) {
       this.runTestSuite(testSuite);
-      console.log(new TestSuiteReport(testSuite));
     }
   }
 
@@ -83,6 +79,8 @@ export class Runner {
   public init() {
     this.eventManager.on("createTestsSuites", (testsSuites: TestSuite[]) => {
       this.runTestsSuites(testsSuites);
+
+      this.eventManager.emit("finishRunningTestsSuites");
     });
   }
 }

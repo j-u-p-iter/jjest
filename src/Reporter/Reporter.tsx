@@ -1,42 +1,24 @@
 import { Tree } from "@j.u.p.iter/react-tree";
 import { Box, render, Text } from "ink";
 import React, { useEffect, useState } from "react";
+import { CombinedReport } from "../Report";
 
 import { Test } from "./Test";
 
-const Report = ({ eventManager }) => {
-  const [testsSuites, setTestsSuites] = useState([]);
+const Report = ({ eventManager, combinedReport }) => {
+  const [isRunningFinished, setIsRunningFinished] = useState(false);
 
   useEffect(() => {
-    eventManager.on("createTestsSuites", testsSuites => {
-      setTestsSuites(testsSuites);
-    });
-
-    eventManager.on("runTestSuite", runningTestSuite => {
-      setTestsSuites(
-        testsSuites.map(testSuite => {
-          return runningTestSuite.testFilePath === testSuite.testFilePath
-            ? runningTestSuite
-            : testSuite;
-        })
-      );
-    });
-
-    eventManager.on("finishTestSuite", runningTestSuite => {
-      setTestsSuites(
-        testsSuites.map(testSuite => {
-          return runningTestSuite.testFilePath === testSuite.testFilePath
-            ? runningTestSuite
-            : testSuite;
-        })
-      );
+    eventManager.on("finishRunningTestsSuites", () => {
+      setIsRunningFinished(true);
     });
   }, []);
 
+  console.log(isRunningFinished);
   return (
     <Box flexDirection="column">
       <Box>
-        {testsSuites.map(({ testFilePath, status }) => {
+        {combinedReport.regenerate().result.map(({ testFilePath, status }) => {
           return <Test status={status} path={testFilePath} />;
         })}
       </Box>
@@ -93,6 +75,13 @@ export class Reporter {
   constructor(private eventManager) {}
 
   init() {
-    render(<Report eventManager={this.eventManager} />);
+    this.eventManager.on("createTestsSuites", testsSuites => {
+      render(
+        <Report
+          eventManager={this.eventManager}
+          combinedReport={new CombinedReport(testsSuites)}
+        />
+      );
+    });
   }
 }

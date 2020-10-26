@@ -1,6 +1,11 @@
 import { isDescribeBlock } from "../helpers";
 import { TestSuite } from "../TestSuite";
-import { ItBlock, ReportResultTree, TestBlock } from "../types";
+import {
+  ItBlock,
+  ReportResultTree,
+  TestBlock,
+  TestSuiteStatus
+} from "../types";
 import { ItReport } from "./ItReport";
 
 export class TestSuiteReport {
@@ -17,9 +22,21 @@ export class TestSuiteReport {
     });
   }
 
-  constructor(private testSuite: TestSuite) {}
+  private calculateDuration(items) {
+    return items.reduce((resultDuration, child) => {
+      if (child.children) {
+        return this.calculateDuration(items);
+      } else {
+        return resultDuration + child.duration;
+      }
+    }, 0);
+  }
+
+  constructor(public testSuite: TestSuite) {}
 
   public duration: number = 0;
+
+  public status: TestSuiteStatus = TestSuiteStatus.INACTIVE;
 
   public numberOfTests: number = 0;
 
@@ -30,11 +47,17 @@ export class TestSuiteReport {
     children: []
   };
 
-  public generate(): void {
-    this.duration = 0;
+  public generate(): TestSuiteReport {
+    this.status = this.testSuite.status;
 
-    this.tree = this.generateReportTree([
-      this.testSuite.getState().rootDescribeBlock
-    ])[0];
+    if (this.status === TestSuiteStatus.PASSED) {
+      this.tree = this.generateReportTree([
+        this.testSuite.getState().rootDescribeBlock
+      ])[0];
+
+      this.duration = this.calculateDuration(this.tree.children);
+    }
+
+    return this;
   }
 }
