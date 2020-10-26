@@ -7,9 +7,9 @@ export class CombinedReport {
 
   public numberOfFailedTests: number;
 
-  public children: TestSuiteReport[];
+  public result: TestSuiteReport[];
 
   public addReport(report: TestSuiteReport): void {
-    this.children.push(report);
+    this.result.push(report);
   }
 }
