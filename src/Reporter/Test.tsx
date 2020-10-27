@@ -1,5 +1,5 @@
 import { Box, Text } from "ink";
-import React from "react";
+import React, { FC } from "react";
 
 import { TestSuiteStatus } from "../types";
 
@@ -19,7 +19,7 @@ const getBackgroundForStatus = (status: TestSuiteStatus) => {
   }
 };
 
-export const Test = ({ status, path }) => {
+export const Test: FC = ({ status, path }) => {
   return (
     <Box>
       <Text color="black" backgroundColor={getBackgroundForStatus(status)}>

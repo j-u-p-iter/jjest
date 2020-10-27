@@ -25,7 +25,7 @@ export class TestSuiteReport {
   private calculateDuration(items) {
     return items.reduce((resultDuration, child) => {
       if (child.children) {
-        return this.calculateDuration(items);
+        return this.calculateDuration(child.children);
       } else {
         return resultDuration + child.duration;
       }

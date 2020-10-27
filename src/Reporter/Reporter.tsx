@@ -1,25 +1,32 @@
 import { Tree } from "@j.u.p.iter/react-tree";
+import crypto from "crypto";
 import { Box, render, Text } from "ink";
 import React, { useEffect, useState } from "react";
-import { CombinedReport } from "../Report";
+import { CombinedReport, TestSuiteReport } from "../Report";
 
 import { Test } from "./Test";
 
 const Report = ({ eventManager, combinedReport }) => {
-  const [isRunningFinished, setIsRunningFinished] = useState(false);
+  const [, rerenderComponent] = useState("");
+  const [report, setReport] = useState(() => combinedReport);
 
   useEffect(() => {
-    eventManager.on("finishRunningTestsSuites", () => {
-      setIsRunningFinished(true);
+    eventManager.on("runTestSuite", testSuite => {
+      setReport(report.addReport(new TestSuiteReport(testSuite).generate()));
+      rerenderComponent(crypto.randomBytes(8).toString("hex"));
+    });
+
+    eventManager.on("finishTestSuite", () => {
+      setReport(report.regenerate());
+      rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
   }, []);
 
-  console.log(isRunningFinished);
   return (
     <Box flexDirection="column">
-      <Box>
-        {combinedReport.regenerate().result.map(({ testFilePath, status }) => {
-          return <Test status={status} path={testFilePath} />;
+      <Box flexDirection="column">
+        {report.result.map(({ status }, index) => {
+          return <Test key={index} status={status} path={"somestring"} />;
         })}
       </Box>
       <Tree
@@ -51,13 +58,13 @@ const Report = ({ eventManager, combinedReport }) => {
                 {tree.map(node => {
                   return node.type === "describe" ? (
                     node.children ? (
-                      <Box flexDirection="column">
+                      <Box key={node.title} flexDirection="column">
                         <Text>{node.title}</Text>
                         <Box>{renderTree(node.children, level + 1)}</Box>
                       </Box>
                     ) : null
                   ) : (
-                    <Text>{node.title}</Text>
+                    <Text key={node.title}>{node.title}</Text>
                   );
                 })}
               </Box>
@@ -75,11 +82,11 @@ export class Reporter {
   constructor(private eventManager) {}
 
   init() {
-    this.eventManager.on("createTestsSuites", testsSuites => {
+    this.eventManager.on("createTestsSuites", () => {
       render(
         <Report
           eventManager={this.eventManager}
-          combinedReport={new CombinedReport(testsSuites)}
+          combinedReport={new CombinedReport()}
         />
       );
     });

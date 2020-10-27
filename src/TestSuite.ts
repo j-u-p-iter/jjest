@@ -97,4 +97,8 @@ export class TestSuite extends Store {
   }
 
   public status: TestSuiteStatus = TestSuiteStatus.INACTIVE;
+
+  public withError() {
+    return false;
+  }
 }

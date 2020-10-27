@@ -1,12 +1,6 @@
 import { TestSuiteReport } from "./TestSuiteReport";
 
 export class CombinedReport {
-  constructor(testsSuites) {
-    for (const testSuite of testsSuites) {
-      this.result.push(new TestSuiteReport(testSuite).generate());
-    }
-  }
-
   public duration: number;
 
   public numberOfTests: number;
@@ -19,6 +13,12 @@ export class CombinedReport {
     for (const report of this.result) {
       report.generate();
     }
+
+    return this;
+  }
+
+  public addReport(report) {
+    this.result.push(report);
 
     return this;
   }

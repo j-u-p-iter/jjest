@@ -29,10 +29,10 @@ export class Runner {
     }
   }
 
-  private runTestSuite(testSuite: TestSuite) {
+  private async runTestSuite(testSuite: TestSuite) {
     const rootDescribeBlock = testSuite.getState().rootDescribeBlock;
 
-    const run = describeBlock => {
+    const run = async describeBlock => {
       for (const childTestBlock of describeBlock.children) {
         if (isDescribeBlock(childTestBlock)) {
           run(childTestBlock);
@@ -63,14 +63,25 @@ export class Runner {
 
     testSuite.setStatus(TestSuiteStatus.RUNS);
 
-    run(rootDescribeBlock);
+    this.eventManager.emit("runTestSuite", testSuite);
 
-    testSuite.setStatus(TestSuiteStatus.FAILED);
+    await new Promise(resolve => {
+      setTimeout(() => {
+        run(rootDescribeBlock);
+        resolve();
+      }, 700);
+    });
+
+    testSuite.withError()
+      ? testSuite.setStatus(TestSuiteStatus.FAILED)
+      : testSuite.setStatus(TestSuiteStatus.PASSED);
+
+    this.eventManager.emit("finishTestSuite", testSuite);
   }
 
-  private runTestsSuites(testsSuites: TestSuite[]) {
+  private async runTestsSuites(testsSuites: TestSuite[]) {
     for (const testSuite of testsSuites) {
-      this.runTestSuite(testSuite);
+      await this.runTestSuite(testSuite);
     }
   }
 
@@ -79,8 +90,6 @@ export class Runner {
   public init() {
     this.eventManager.on("createTestsSuites", (testsSuites: TestSuite[]) => {
       this.runTestsSuites(testsSuites);
-
-      this.eventManager.emit("finishRunningTestsSuites");
     });
   }
 }
