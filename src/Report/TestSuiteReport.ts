@@ -4,6 +4,7 @@ import {
   ItBlock,
   ReportResultTree,
   TestBlock,
+  TestBlockType,
   TestSuiteStatus
 } from "../types";
 import { ItReport } from "./ItReport";
@@ -14,6 +15,7 @@ export class TestSuiteReport {
       if (isDescribeBlock(testBlock)) {
         return {
           title: testBlock.description,
+          type: TestBlockType.DESCRIBE,
           children: this.generateReportTree(testBlock.children)
         };
       } else {
