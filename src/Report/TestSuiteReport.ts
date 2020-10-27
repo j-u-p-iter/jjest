@@ -38,6 +38,8 @@ export class TestSuiteReport {
 
   public status: TestSuiteStatus = TestSuiteStatus.RUNS;
 
+  public testFilePath: string = "";
+
   public numberOfTests: number = 0;
 
   public numberOfFailedTests: number = 0;
@@ -49,6 +51,7 @@ export class TestSuiteReport {
 
   public generate(): TestSuiteReport {
     this.status = this.testSuite.status;
+    this.testFilePath = this.testSuite.testFilePath;
 
     if (this.status === TestSuiteStatus.PASSED) {
       this.tree = this.generateReportTree([

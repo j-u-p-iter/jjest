@@ -25,8 +25,12 @@ const Report = ({ eventManager, combinedReport }) => {
   return (
     <Box flexDirection="column">
       <Box flexDirection="column">
-        {report.result.map(({ status }, index) => {
-          return <Test key={index} status={status} path={"somestring"} />;
+        {report.result.map(({ status, testFilePath }, index) => {
+          return (
+            <Box>
+              <Test key={index} status={status} path={testFilePath} />
+            </Box>
+          );
         })}
       </Box>
       <Tree
