@@ -36,7 +36,7 @@ export class TestSuiteReport {
 
   public duration: number = 0;
 
-  public status: TestSuiteStatus = TestSuiteStatus.INACTIVE;
+  public status: TestSuiteStatus = TestSuiteStatus.RUNS;
 
   public numberOfTests: number = 0;
 

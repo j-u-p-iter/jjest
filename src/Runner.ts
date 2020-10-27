@@ -52,10 +52,14 @@ export class Runner {
               payload: { it: childTestBlock }
             });
 
-            testSuite.dispatch("");
             this.runAfterEachHooks(childTestBlock.parent.hooks);
           } catch (error) {
-            console.error(error);
+            testSuite.setStatus(TestSuiteStatus.FAILED);
+
+            testSuite.dispatch({
+              type: "FAIL_IT",
+              payload: { error, it: childTestBlock }
+            });
           }
         }
       }
@@ -68,13 +72,14 @@ export class Runner {
     await new Promise(resolve => {
       setTimeout(() => {
         run(rootDescribeBlock);
+
         resolve();
       }, 700);
     });
 
-    testSuite.withError()
-      ? testSuite.setStatus(TestSuiteStatus.FAILED)
-      : testSuite.setStatus(TestSuiteStatus.PASSED);
+    if (testSuite.status === TestSuiteStatus.RUNS) {
+      testSuite.setStatus(TestSuiteStatus.PASSED);
+    }
 
     this.eventManager.emit("finishTestSuite", testSuite);
   }

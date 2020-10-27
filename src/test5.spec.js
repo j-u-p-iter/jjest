@@ -5,7 +5,7 @@ describe("super test", () => {
     describe("new describe", () => {
       it("works properly", () => {
         console.log("hello5");
-        assert.equal(5, 1);
+        assert.equal(5, 5);
       });
     });
   });

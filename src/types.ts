@@ -42,7 +42,7 @@ export interface ItBlock extends TestBlock {
   // we render errors not only during tests execution
   // but also after all tests have run
   // so, we need to store them
-  errors?: Error[];
+  error: Error | null;
   status: ItStatus;
   // we use startTime and finishTime to calculate
   // the duration of each ItBlock
@@ -73,7 +73,9 @@ export enum ActionType {
 
   START_IT = "START_IT",
 
-  FINISH_IT = "FINISH_IT"
+  FINISH_IT = "FINISH_IT",
+
+  FAIL_IT = "FAIL_IT"
 }
 
 export interface ReportResultTree {

@@ -33,7 +33,8 @@ export class TestSuite extends Store {
       description,
       fn,
       type: TestBlockType.IT,
-      status: ItStatus.INACTIVE
+      status: ItStatus.INACTIVE,
+      error: null
     };
   }
 
@@ -97,8 +98,4 @@ export class TestSuite extends Store {
   }
 
   public status: TestSuiteStatus = TestSuiteStatus.INACTIVE;
-
-  public withError() {
-    return false;
-  }
 }

@@ -81,6 +81,12 @@ export const reducer = (state, action) => {
       action.payload.it.status = ItStatus.PASSED;
       action.payload.it.finishTime = Date.now();
       break;
+
+    case ActionType.FAIL_IT:
+      action.payload.it.status = ItStatus.FAILED;
+      action.payload.it.finishTime = Date.now();
+      action.payload.it.error = action.payload.error;
+      break;
   }
 
   return state;
