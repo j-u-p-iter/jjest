@@ -2,6 +2,8 @@ import { Tree as BaseTree } from "@j.u.p.iter/react-tree";
 import { Box, Text } from "ink";
 import React, { FC } from "react";
 
+import { StatusIcon } from "./StatusIcon";
+
 /** The config example 
  
 const config = [{
@@ -45,7 +47,12 @@ export const Tree: FC = ({ config }) => {
                     </Box>
                   ) : null
                 ) : (
-                  <Text key={index}>{node.title}</Text>
+                  <Box>
+                    <Box marginRight={1}>
+                      <StatusIcon status={node.status} />
+                    </Box>
+                    <Text key={index}>{node.title}</Text>
+                  </Box>
                 );
               })}
             </Box>
