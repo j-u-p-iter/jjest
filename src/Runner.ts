@@ -2,7 +2,7 @@
 //
 // Here we run the queue, prepared by the Queue, for each TestSuite.
 import { EventManager } from "./EventManager";
-import { isDescribeBlock } from "./helpers";
+import { delay, isDescribeBlock } from "./helpers";
 import { TestSuite } from "./TestSuite";
 import { TestHookType, TestSuiteStatus } from "./types";
 
@@ -65,22 +65,12 @@ export class Runner {
       }
     };
 
-    await new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, 700);
-    });
+    await delay();
 
     testSuite.setStatus(TestSuiteStatus.RUNS);
     this.eventManager.emit("runTestSuite", testSuite);
 
-    await new Promise(resolve => {
-      setTimeout(() => {
-        run(rootDescribeBlock);
-
-        resolve();
-      }, 700);
-    });
+    await delay(() => run(rootDescribeBlock));
 
     if (testSuite.status === TestSuiteStatus.RUNS) {
       testSuite.setStatus(TestSuiteStatus.PASSED);
