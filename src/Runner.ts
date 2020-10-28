@@ -65,8 +65,13 @@ export class Runner {
       }
     };
 
-    testSuite.setStatus(TestSuiteStatus.RUNS);
+    await new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, 700);
+    });
 
+    testSuite.setStatus(TestSuiteStatus.RUNS);
     this.eventManager.emit("runTestSuite", testSuite);
 
     await new Promise(resolve => {

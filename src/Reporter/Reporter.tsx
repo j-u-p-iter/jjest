@@ -12,6 +12,7 @@ const Report = ({ eventManager, combinedReport }) => {
 
   useEffect(() => {
     eventManager.on("runTestSuite", testSuite => {
+      console.log("testSuiteAgain:", testSuite);
       setReport(report.addReport(new TestSuiteReport(testSuite).generate()));
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
