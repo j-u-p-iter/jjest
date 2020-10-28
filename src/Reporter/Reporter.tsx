@@ -12,7 +12,6 @@ const Report = ({ eventManager, combinedReport }) => {
 
   useEffect(() => {
     eventManager.on("runTestSuite", testSuite => {
-      console.log("testSuiteAgain:", testSuite);
       setReport(report.addReport(new TestSuiteReport(testSuite).generate()));
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
@@ -26,9 +25,11 @@ const Report = ({ eventManager, combinedReport }) => {
   return (
     <Box flexDirection="column">
       {report.result.map(({ status, testFilePath, tree }, index) => {
+        console.log("testFilePath:", testFilePath);
+
         return (
-          <Box>
-            <Test key={index} status={status} path={testFilePath} />
+          <Box key={index} flexDirection="column">
+            <Test status={status} path={testFilePath} />
             <Tree config={[tree]} />
           </Box>
         );

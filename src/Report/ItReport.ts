@@ -9,9 +9,11 @@ export class ItReport {
 
   public duration: number;
 
-  public generate(): void {
+  public generate(): ItReport {
     this.title = this.itBlock.description;
     this.status = this.itBlock.status;
     this.duration = this.itBlock.finishTime - this.itBlock.startTime;
+
+    return this;
   }
 }

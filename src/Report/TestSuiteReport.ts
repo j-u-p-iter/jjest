@@ -19,7 +19,7 @@ export class TestSuiteReport {
           children: this.generateReportTree(testBlock.children)
         };
       } else {
-        return new ItReport(testBlock as ItBlock);
+        return new ItReport(testBlock as ItBlock).generate();
       }
     });
   }
@@ -55,7 +55,10 @@ export class TestSuiteReport {
     this.status = this.testSuite.status;
     this.testFilePath = this.testSuite.testFilePath;
 
-    if (this.status === TestSuiteStatus.PASSED) {
+    if (
+      this.status === TestSuiteStatus.PASSED ||
+      this.status === TestSuiteStatus.FAILED
+    ) {
       this.tree = this.generateReportTree([
         this.testSuite.getState().rootDescribeBlock
       ])[0];
