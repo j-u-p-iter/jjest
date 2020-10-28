@@ -33,34 +33,39 @@ export const Tree: FC = ({ config }) => {
   }
 
   return (
-    <BaseTree config={config}>
-      {({ api: { getTree } }) => {
-        const renderTree = (tree, level = 0) => {
-          return (
-            <Box flexDirection="column" marginLeft={level}>
-              {tree.map((node, index) => {
-                return node.type === "describe" ? (
-                  node.children ? (
-                    <Box key={index} flexDirection="column">
-                      <Text>{node.title}</Text>
-                      <Box>{renderTree(node.children, level + 1)}</Box>
+    <Box marginLeft={1}>
+      <BaseTree config={config}>
+        {({ api: { getTree } }) => {
+          const renderTree = (tree, level = 0) => {
+            return (
+              <Box flexDirection="column" marginLeft={level}>
+                {tree.map((node, index) => {
+                  return node.type === "describe" ? (
+                    node.children ? (
+                      <Box key={index} flexDirection="column">
+                        <Text>{node.title}</Text>
+                        <Box>{renderTree(node.children, level + 1)}</Box>
+                      </Box>
+                    ) : null
+                  ) : (
+                    <Box key={index}>
+                      <Box marginRight={1}>
+                        <StatusIcon status={node.status} />
+                      </Box>
+                      <Box marginRight={1}>
+                        <Text dimColor>{node.title}</Text>
+                      </Box>
+                      <Text dimColor>{`(${node.duration}ms)`}</Text>
                     </Box>
-                  ) : null
-                ) : (
-                  <Box>
-                    <Box marginRight={1}>
-                      <StatusIcon status={node.status} />
-                    </Box>
-                    <Text key={index}>{node.title}</Text>
-                  </Box>
-                );
-              })}
-            </Box>
-          );
-        };
+                  );
+                })}
+              </Box>
+            );
+          };
 
-        return <Box>{renderTree(getTree())}</Box>;
-      }}
-    </BaseTree>
+          return <Box>{renderTree(getTree())}</Box>;
+        }}
+      </BaseTree>
+    </Box>
   );
 };

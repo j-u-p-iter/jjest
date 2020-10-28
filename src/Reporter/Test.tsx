@@ -19,15 +19,39 @@ const getBackgroundForStatus = (status: TestSuiteStatus) => {
   }
 };
 
-export const Test: FC = ({ status, path }) => {
+interface TestPathProps {
+  path: string;
+}
+
+const TestPath: FC<TestPathProps> = ({ path }) => {
+  const [fileName, ...basePathItems] = path.split("/").reverse();
+  const basePath = `${basePathItems.reverse().join("/")}/`;
+
+  return (
+    <Box marginRight={1}>
+      <Text dimColor>{basePath}</Text>
+      <Text>{fileName}</Text>
+    </Box>
+  );
+};
+
+interface TestProps {
+  status: TestSuiteStatus;
+  path: string;
+  duration: number;
+}
+
+export const Test: FC<TestProps> = ({ status, path, duration }) => {
   return (
     <Box>
       <Text color="black" backgroundColor={getBackgroundForStatus(status)}>
         {status.toUpperCase()}
       </Text>
 
+      <TestPath path={path} />
+
       <Box marginLeft={1}>
-        <Text>{path}</Text>
+        <Text>{`(${duration}ms)`}</Text>
       </Box>
     </Box>
   );
