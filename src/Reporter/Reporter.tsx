@@ -3,6 +3,7 @@ import { Box, render } from "ink";
 import React, { useEffect, useState } from "react";
 import { CombinedReport, TestSuiteReport } from "../Report";
 
+import { Summary } from "./Summary";
 import { Test } from "./Test";
 import { Tree } from "./Tree";
 
@@ -32,6 +33,7 @@ const Report = ({ eventManager, combinedReport }) => {
           </Box>
         );
       })}
+      <Summary {...report.summary()} />
     </Box>
   );
 };

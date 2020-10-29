@@ -132,6 +132,11 @@
   dependencies:
     any-observable "^0.3.0"
 
+"@testy/assertion@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@testy/assertion/-/assertion-0.1.1.tgz#fd3017ea2fb08cd535c0e71e6034c3db6334bd82"
+  integrity sha512-MpqyVxOmUcvItLB09dAQ1+8Ex944eKa+kTDiPWsfA9ifld0tmjdIKOO6+3C1MykdXnno4jywS+K8w62YsqukNQ==
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
