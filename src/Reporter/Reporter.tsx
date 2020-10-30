@@ -42,7 +42,7 @@ export class Reporter {
   constructor(private eventManager) {}
 
   init() {
-    this.eventManager.on("createTestsSuites", () => {
+    this.eventManager.on("parseTestsSuites", () => {
       render(
         <Report
           eventManager={this.eventManager}

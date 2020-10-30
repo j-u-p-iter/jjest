@@ -2,7 +2,7 @@ import { EventManager } from "./EventManager";
 import { Reporter } from "./Reporter";
 import { Runner } from "./Runner";
 import { Scanner } from "./Scanner";
-import { Scheduler } from "./Scheduler";
+import { Parser } from "./Parser";
 
 const eventManager = new EventManager();
 
@@ -32,8 +32,8 @@ export class Trun {
        *
        */
       async () => {
-        const scheduler = new Scheduler(eventManager);
-        await scheduler.init();
+        const parser = new Parser(eventManager);
+        await parser.init();
       },
 
       /**

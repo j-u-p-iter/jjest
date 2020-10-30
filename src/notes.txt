@@ -224,3 +224,16 @@ ROOT_DESCRIBE_RUN:
     - if new it has run
       - creates appropriate ItBlock object 
       - writes it into it's own "children" prop
+
+
+
+
+Next tasks to do:
+
+1. Read options from config file / command line.
+
+  Next things should be put into the config:
+    - filePatternToInclude (is used in the Scanner)
+    - dirPatternToExclude (is used in the Scanner)
+
+2. Read event names from an enum.

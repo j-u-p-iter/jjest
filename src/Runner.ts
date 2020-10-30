@@ -88,7 +88,7 @@ export class Runner {
   constructor(private eventManager: EventManager) {}
 
   public init() {
-    this.eventManager.on("createTestsSuites", (testsSuites: TestSuite[]) => {
+    this.eventManager.on("parseTestsSuites", (testsSuites: TestSuite[]) => {
       this.runTestsSuites(testsSuites);
     });
   }
