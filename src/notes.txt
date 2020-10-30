@@ -248,4 +248,4 @@ Next tasks to do:
 
 7. Add --watch (-w) mode.
 
-8. 
+8. Add test coverage.
