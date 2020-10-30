@@ -34,6 +34,16 @@ export class TestSuiteReport {
     }, 0);
   }
 
+  private calculateAmountOfTests(items) {
+    return items.reduce((totalAmountOfTests, child) => {
+      if (child.children) {
+        return this.calculateAmountOfTests(child.children);
+      } else {
+        return totalAmountOfTests + 1;
+      }
+    }, 0);
+  }
+
   constructor(public testSuite: TestSuite) {}
 
   public duration: number = 0;
@@ -42,7 +52,7 @@ export class TestSuiteReport {
 
   public testFilePath: string = "";
 
-  public numberOfTests: number = 0;
+  public amountOfTests: number = 0;
 
   public numberOfFailedTests: number = 0;
 
@@ -59,9 +69,10 @@ export class TestSuiteReport {
       this.status === TestSuiteStatus.PASSED ||
       this.status === TestSuiteStatus.FAILED
     ) {
-      this.tree = this.generateReportTree([
-        this.testSuite.getState().rootDescribeBlock
-      ])[0];
+      const rootTestsSuiteItem = [this.testSuite.getState().rootDescribeBlock];
+      this.tree = this.generateReportTree(rootTestsSuiteItem)[0];
+
+      this.amountOfTests = this.calculateAmountOfTests(rootTestsSuiteItem);
 
       this.duration = this.calculateDuration(this.tree.children);
     }

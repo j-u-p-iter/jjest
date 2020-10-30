@@ -237,3 +237,11 @@ Next tasks to do:
     - dirPatternToExclude (is used in the Scanner)
 
 2. Read event names from an enum.
+
+3. Add expectation library.
+
+4. Add support for TypeScript.
+
+5. Add JSDom support.
+
+6. Add errors reporter.

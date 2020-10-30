@@ -7,13 +7,13 @@ import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
  *
  * The "Scanner" is the first step of such process.
  *
- * The purpose of this step is to find files paths for all 
+ * The purpose of this step is to find files paths for all
  *   tests files.
  *
- * The scanning process is started from the folder, 
+ * The scanning process is started from the folder,
  *   the test runner ("trun") was executed in.
  *
- * A communication between different parts of running tests process 
+ * A communication between different parts of running tests process
  *   happens with events. After files paths are successfully scanned
  *   "scanTestFiles" event is emitted by the Scanner to send result paths
  *   to the next step.

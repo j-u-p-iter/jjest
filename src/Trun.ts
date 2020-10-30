@@ -1,8 +1,8 @@
 import { EventManager } from "./EventManager";
+import { Parser } from "./Parser";
 import { Reporter } from "./Reporter";
 import { Runner } from "./Runner";
 import { Scanner } from "./Scanner";
-import { Parser } from "./Parser";
 
 const eventManager = new EventManager();
 

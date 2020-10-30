@@ -2,12 +2,6 @@ import { TestSuiteStatus } from "../types";
 import { TestSuiteReport } from "./TestSuiteReport";
 
 export class CombinedReport {
-  public duration: number;
-
-  public numberOfTests: number;
-
-  public numberOfFailedTests: number;
-
   public result: TestSuiteReport[] = [];
 
   public summary() {
@@ -15,7 +9,16 @@ export class CombinedReport {
       totalAmountOfTestSuites: this.result.length,
       passedAmountOfTestSuites: this.result.filter(({ status }) => {
         return Object.is(status, TestSuiteStatus.PASSED);
-      }).length
+      }).length,
+      duration: this.result.reduce((totalDuration, { duration }) => {
+        return totalDuration + duration;
+      }, 0),
+      totalAmountOfTests: this.result.reduce(
+        (totalAmountOfTests, { amountOfTests }) => {
+          return totalAmountOfTests + amountOfTests;
+        },
+        0
+      )
     };
   }
 
