@@ -245,3 +245,7 @@ Next tasks to do:
 5. Add JSDom support.
 
 6. Add errors reporter.
+
+7. Add --watch (-w) mode.
+
+8. 
