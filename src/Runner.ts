@@ -4,7 +4,7 @@
 import { EventManager } from "./EventManager";
 import { delay, isDescribeBlock } from "./helpers";
 import { TestSuite } from "./TestSuite";
-import { TestHookType, TestSuiteStatus } from "./types";
+import { TestHookType, TestSuiteStatus, TrunEvent } from "./types";
 
 export class Runner {
   private runBeforeEachHooks(hooks) {
@@ -68,7 +68,7 @@ export class Runner {
     await delay();
 
     testSuite.setStatus(TestSuiteStatus.RUNS);
-    this.eventManager.emit("runTestSuite", testSuite);
+    this.eventManager.emit(TrunEvent.RUN_TEST_SUITE, testSuite);
 
     await delay(() => run(rootDescribeBlock));
 
@@ -76,7 +76,7 @@ export class Runner {
       testSuite.setStatus(TestSuiteStatus.PASSED);
     }
 
-    this.eventManager.emit("finishTestSuite", testSuite);
+    this.eventManager.emit(TrunEvent.FINISH_TEST_SUITE, testSuite);
   }
 
   private async runTestsSuites(testsSuites: TestSuite[]) {
@@ -88,8 +88,11 @@ export class Runner {
   constructor(private eventManager: EventManager) {}
 
   public init() {
-    this.eventManager.on("parseTestsSuites", (testsSuites: TestSuite[]) => {
-      this.runTestsSuites(testsSuites);
-    });
+    this.eventManager.on(
+      TrunEvent.PARSE_TESTS_SUITES,
+      (testsSuites: TestSuite[]) => {
+        this.runTestsSuites(testsSuites);
+      }
+    );
   }
 }

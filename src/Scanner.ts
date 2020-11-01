@@ -1,6 +1,8 @@
+import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
+
 import { EventManager } from "./EventManager";
 
-import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
+import { TrunEvent } from "./types";
 
 /**
  * The running tests process consists of multiple steps.
@@ -30,6 +32,6 @@ export class Scanner {
       filePatternToInclude: ".spec.ts"
     });
 
-    this.eventManager.emit("scanTestFiles", testFiles);
+    this.eventManager.emit(TrunEvent.SCAN_TEST_FILES, testFiles);
   }
 }

@@ -2,6 +2,7 @@ import crypto from "crypto";
 import { Box, render } from "ink";
 import React, { useEffect, useState } from "react";
 import { CombinedReport, TestSuiteReport } from "../Report";
+import { TrunEvent } from "../types";
 
 import { Summary } from "./Summary";
 import { Test } from "./Test";
@@ -12,12 +13,12 @@ const Report = ({ eventManager, combinedReport }) => {
   const [report, setReport] = useState(() => combinedReport);
 
   useEffect(() => {
-    eventManager.on("runTestSuite", testSuite => {
+    eventManager.on(TrunEvent.RUN_TEST_SUITE, testSuite => {
       setReport(report.addReport(new TestSuiteReport(testSuite).generate()));
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
 
-    eventManager.on("finishTestSuite", () => {
+    eventManager.on(TrunEvent.FINISH_TEST_SUITE, () => {
       setReport(report.regenerate());
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
@@ -42,7 +43,7 @@ export class Reporter {
   constructor(private eventManager) {}
 
   init() {
-    this.eventManager.on("parseTestsSuites", () => {
+    this.eventManager.on(TrunEvent.PARSE_TESTS_SUITES, () => {
       render(
         <Report
           eventManager={this.eventManager}

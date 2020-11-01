@@ -1,6 +1,7 @@
 import { EventManager } from "./EventManager";
 
 import { TestSuite } from "./TestSuite";
+import { TrunEvent } from "./types";
 
 /**
  * The running tests process consists of multiple steps.
@@ -27,14 +28,14 @@ export class Parser {
   constructor(private eventManager: EventManager) {}
 
   public init() {
-    this.eventManager.on("scanTestFiles", testFiles => {
+    this.eventManager.on(TrunEvent.SCAN_TEST_FILES, testFiles => {
       const testsSuites = testFiles.map(testFile => {
         const testSuite = new TestSuite(testFile);
 
         return testSuite;
       });
 
-      this.eventManager.emit("parseTestsSuites", testsSuites);
+      this.eventManager.emit(TrunEvent.PARSE_TESTS_SUITES, testsSuites);
     });
   }
 }
