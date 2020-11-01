@@ -49,7 +49,7 @@ export class TestSuiteReport {
     return items
       .reduce((testSuiteErrors, child) => {
         if (child.children) {
-          return this.extractErrors(child.children);
+          return [...testSuiteErrors, ...this.extractErrors(child.children)];
         } else {
           return [...testSuiteErrors, child.error];
         }

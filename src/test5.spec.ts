@@ -1,6 +1,6 @@
 const assert = require("assert");
 
-describe("super test", () => {
+describe("super test 5", () => {
   describe("by some condition", () => {
     describe("new describe", () => {
       it("works properly", () => {

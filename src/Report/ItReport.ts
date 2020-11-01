@@ -1,10 +1,10 @@
-import { ItBlock, ItReportError, ItStatus } from "../types";
+import { ItBlock, ItReportError, ItStatus, TestBlock } from "../types";
 
 export class ItReport {
-  private generateErrorTitle(itBlock) {
-    const titleParts = [itBlock.description];
+  private generateErrorTitle() {
+    const titleParts = [this.itBlock.description];
 
-    let block = itBlock;
+    let block: TestBlock = this.itBlock;
 
     while (block.parent) {
       titleParts.push(block.parent.description);
@@ -29,10 +29,12 @@ export class ItReport {
     this.title = this.itBlock.description;
     this.status = this.itBlock.status;
     this.duration = this.itBlock.finishTime - this.itBlock.startTime;
-    this.error = {
-      title: this.generateErrorTitle(this.itBlock),
-      body: this.itBlock.error
-    };
+    this.error = this.itBlock.error
+      ? {
+          title: this.generateErrorTitle(),
+          body: this.itBlock.error
+        }
+      : null;
 
     return this;
   }
