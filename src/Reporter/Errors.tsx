@@ -11,9 +11,9 @@ export const Errors: FC<ErrorsProps> = ({ errors }) => {
     <Box flexDirection="column">
       {errors.map(error => {
         return (
-          <Box key={error.title}>
+          <Box key={error.title} flexDirection="column">
             <Text>{error.title}</Text>
-            <Text>{error.body.message}</Text>
+            <Text>{error.body.stack}</Text>
           </Box>
         );
       })}
