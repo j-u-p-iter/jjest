@@ -92,3 +92,8 @@ export enum TrunEvent {
 
   SCAN_TEST_FILES = "scanTestFiles"
 }
+
+export interface ItReportError {
+  title: string;
+  body: Error;
+}

@@ -2,6 +2,7 @@ import { isDescribeBlock } from "../helpers";
 import { TestSuite } from "../TestSuite";
 import {
   ItBlock,
+  ItReportError,
   ReportResultTree,
   TestBlock,
   TestBlockType,
@@ -44,6 +45,18 @@ export class TestSuiteReport {
     }, 0);
   }
 
+  private extractErrors(items) {
+    return items
+      .reduce((testSuiteErrors, child) => {
+        if (child.children) {
+          return this.extractErrors(child.children);
+        } else {
+          return [...testSuiteErrors, child.error];
+        }
+      }, [])
+      .filter(Boolean);
+  }
+
   constructor(public testSuite: TestSuite) {}
 
   public duration: number = 0;
@@ -61,6 +74,8 @@ export class TestSuiteReport {
     children: []
   };
 
+  public errors: ItReportError[] = [];
+
   public generate(): TestSuiteReport {
     this.status = this.testSuite.status;
     this.testFilePath = this.testSuite.testFilePath;
@@ -71,6 +86,8 @@ export class TestSuiteReport {
     ) {
       const rootTestsSuiteItem = [this.testSuite.getState().rootDescribeBlock];
       this.tree = this.generateReportTree(rootTestsSuiteItem)[0];
+
+      this.errors = this.extractErrors(this.tree.children);
 
       this.amountOfTests = this.calculateAmountOfTests(rootTestsSuiteItem);
 

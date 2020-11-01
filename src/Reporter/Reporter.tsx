@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { CombinedReport, TestSuiteReport } from "../Report";
 import { TrunEvent } from "../types";
 
+import { Errors } from "./Errors";
 import { Summary } from "./Summary";
 import { Test } from "./Test";
 import { Tree } from "./Tree";
@@ -34,7 +35,10 @@ const Report = ({ eventManager, combinedReport }) => {
           </Box>
         );
       })}
+
       <Summary {...report.summary()} />
+
+      <Errors errors={report.summary().errors} />
     </Box>
   );
 };

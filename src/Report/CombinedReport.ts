@@ -18,7 +18,10 @@ export class CombinedReport {
           return totalAmountOfTests + amountOfTests;
         },
         0
-      )
+      ),
+      errors: this.result.reduce((resultErrors, { errors: reportErrors }) => {
+        return [...resultErrors, ...reportErrors];
+      }, [])
     };
   }
 
