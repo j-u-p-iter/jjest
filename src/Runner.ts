@@ -83,6 +83,8 @@ export class Runner {
     for (const testSuite of testsSuites) {
       await this.runTestSuite(testSuite);
     }
+
+    this.eventManager.emit(TrunEvent.FINISH_RUNNING_TESTS);
   }
 
   constructor(private eventManager: EventManager) {}

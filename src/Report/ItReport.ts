@@ -1,4 +1,10 @@
-import { ItBlock, ItReportError, ItStatus, TestBlock } from "../types";
+import {
+  ItBlock,
+  ItReportError,
+  ItStatus,
+  TestBlock,
+  TestSuite
+} from "../types";
 
 export class ItReport {
   private generateErrorTitle() {
@@ -15,7 +21,14 @@ export class ItReport {
     return titleParts.reverse().join(" * ");
   }
 
-  constructor(private itBlock: ItBlock) {}
+  private prepareAt(errorStack: string) {
+    return errorStack
+      .split("\n")[1]
+      .match(/\(.*\)/)[0]
+      .replace(/[\(,\)]/g, "");
+  }
+
+  constructor(private itBlock: ItBlock, private testSuite: TestSuite) {}
 
   public title: string;
 
@@ -32,7 +45,9 @@ export class ItReport {
     this.error = this.itBlock.error
       ? {
           title: this.generateErrorTitle(),
-          body: this.itBlock.error
+          body: this.itBlock.error,
+          at: this.prepareAt(this.itBlock.error.stack),
+          context: this.testSuite
         }
       : null;
 

@@ -12,6 +12,7 @@ import { Tree } from "./Tree";
 const Report = ({ eventManager, combinedReport }) => {
   const [, rerenderComponent] = useState("");
   const [report, setReport] = useState(() => combinedReport);
+  const [hasRunningFinished, setHasRunningFinished] = useState(false);
 
   useEffect(() => {
     eventManager.on(TrunEvent.RUN_TEST_SUITE, testSuite => {
@@ -22,6 +23,10 @@ const Report = ({ eventManager, combinedReport }) => {
     eventManager.on(TrunEvent.FINISH_TEST_SUITE, () => {
       setReport(report.regenerate());
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
+    });
+
+    eventManager.on(TrunEvent.FINISH_RUNNING_TESTS, () => {
+      setHasRunningFinished(true);
     });
   }, []);
 
@@ -38,7 +43,7 @@ const Report = ({ eventManager, combinedReport }) => {
 
       <Summary {...report.summary()} />
 
-      <Errors errors={report.summary().errors} />
+      {hasRunningFinished ? <Errors errors={report.summary().errors} /> : null}
     </Box>
   );
 };

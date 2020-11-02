@@ -1,4 +1,5 @@
 import { ItReport } from "./Report";
+import { TestSuite } from "./TestSuite";
 
 export enum TestSuiteStatus {
   INACTIVE = "inactive",
@@ -90,10 +91,16 @@ export enum TrunEvent {
 
   RUN_TEST_SUITE = "runTestSuite",
 
-  SCAN_TEST_FILES = "scanTestFiles"
+  SCAN_TEST_FILES = "scanTestFiles",
+
+  FINISH_RUNNING_TESTS = "finishRunningTests"
 }
 
 export interface ItReportError {
   title: string;
   body: Error;
+  at: string;
+  context: TestSuite;
 }
+
+export { TestSuite };

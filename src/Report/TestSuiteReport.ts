@@ -20,7 +20,7 @@ export class TestSuiteReport {
           children: this.generateReportTree(testBlock.children)
         };
       } else {
-        return new ItReport(testBlock as ItBlock).generate();
+        return new ItReport(testBlock as ItBlock, this.testSuite).generate();
       }
     });
   }
