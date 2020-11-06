@@ -1,0 +1,22 @@
+import { Command } from 'commander';
+
+
+
+export class CLI {
+  getVersion() {
+    const { version } = require('package.json');
+    
+    return version;
+  }
+  
+  run() {
+    const program = new Command();
+    
+    // sets up the CLI version
+    program.version(this.getVersion());
+    
+    program
+      .command('init')
+      .option('-c, --config <type>', 'add the specified config for the test runner', 'trun.config.js')
+  }
+}
