@@ -9,6 +9,10 @@ export class CLI {
     return version;
   }
   
+  createConfig() {
+  
+  }
+  
   run() {
     const program = new Command();
     
@@ -16,7 +20,11 @@ export class CLI {
     program.version(this.getVersion());
     
     program
-      .command('init')
-      .option('-c, --config <type>', 'add the specified config for the test runner', 'trun.config.js')
+      .command('init')  
+      .description('Creates a default trun.json config file')
+      .action(this.createConfig);
+      
+    program
+      .option('-c, --config <type>', 'Specify a config file for the test runner', 'trun.json')
   }
 }
