@@ -249,3 +249,19 @@ Next tasks to do:
 7. Add --watch (-w) mode.
 
 8. Add test coverage.
+
+9. Implement .only modifier.
+
+10. Implement .skip modifier. 
+
+11. Write common docs about tests - what main parts it consists of:
+
+Good example of such docs: https://github.com/avajs/ava/tree/master/docs.
+
+12. Add support for an async code.
+
+13. Run each file in a separate process as AVA does.
+
+14. Pass "assert" as an argument into the callback.
+
+15. Introduce timeout, after which test will fail.

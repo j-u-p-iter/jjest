@@ -98,7 +98,7 @@ export enum TrunEvent {
 
 export interface ItReportError {
   title: string;
-  body: Error;
+  error: Error;
   at: string;
   context: TestSuite;
 }

@@ -45,7 +45,7 @@ export class ItReport {
     this.error = this.itBlock.error
       ? {
           title: this.generateErrorTitle(),
-          body: this.itBlock.error,
+          error: this.itBlock.error,
           at: this.prepareAt(this.itBlock.error.stack),
           context: this.testSuite
         }
