@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { Trun } from "./Trun";
+import { CLI } from "./CLI";
 
-const trun = new Trun();
+const cli = new CLI();
 
 const run = async () => {
-  trun.run();
+  await cli.run();
 };
 
 run();

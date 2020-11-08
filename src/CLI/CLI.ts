@@ -1,67 +1,63 @@
 import { Command } from "commander";
 
-import { Trun } from "../Trun";
+import { CommandName } from "./Command";
 import { InitCommand } from "./InitCommand";
 import { RunCommand } from "./RunCommand";
 
-export enum CommandName {
-  RUN = "run",
-  INIT = "init"
-}
-
 export class CLI {
-  private getVersion() {
-    const { version } = require("package.json");
+  private program = new Command();
 
-    return version;
+  private commands = new Map();
+
+  private initialize() {
+    this.commands.set(
+      CommandName.INIT,
+      new InitCommand(this.program).initialize()
+    );
+
+    this.commands.set(
+      CommandName.RUN,
+      new RunCommand(this.program).initialize()
+    );
   }
 
-  private runCommand(commandName) {
-    switch (commandName) {
-      case CommandName.RUN:
-        new RunCommand().execute();
-
-      case CommandName.INIT:
-        new InitCommand().execute();
-    }
+  private parseArgs() {
+    /**
+     * Initializes INIT command.
+     */
+    this.program.parse(process.argv);
   }
 
-  /**
-   * Run - is the default command, it executes at the end if
-   *   there is no any another method to execute.
-   */
+  private execute() {
+    /**
+     * After we've parsed the process args, we have parsed results into the "this.program"
+     *   to extract and use. In particularly we have command name and it's arguments in the "this.program.args".
+     *   Boolean options are written into the "this.program" directly."
+     */
+    console.log(this.program);
+    const commandName = this.program.args[0] || CommandName.RUN;
+
+    this.commands.get(commandName).execute();
+  }
+
+  constructor() {
+    /**
+     * Initialzes all commands and options
+     */
+    this.initialize();
+  }
+
   public run() {
     /**
-     * Usage of the Promise allows us to stop execution of the run method
-     *   on each action of the program, that is not possible to do with simple if else.
+     * The first funning step is to parse all information about commands names
+     *   and it's arguments (from process.argv) to use them on the next (execution) step.
      */
-    return new Promise((resolve, reject) => {
-      const callIt = async callback => {
-        try {
-          const result = await callback();
+    this.parseArgs();
 
-          resolve(result);
-        } catch (error) {
-          reject(error);
-        }
-      };
-
-      const program = new Command();
-
-      // sets up the CLI version
-      program.version(this.getVersion());
-
-      program
-        .command("init")
-        .description("Creates a default trun.json config file")
-        .action(callIt(() => runCommand(CommandName.INIT)));
-
-      program.option(
-        "-w, --watch",
-        "Enables watching mode (rerun tests on change the tests or the main code)"
-      );
-
-      callIt(() => runCommand(CommandName.RUN));
-    });
+    /**
+     * The second running step is to execute one of the previously initialized
+     *   programs.
+     */
+    this.execute();
   }
 }
