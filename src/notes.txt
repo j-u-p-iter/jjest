@@ -244,7 +244,7 @@ Next tasks to do:
 
 5. Add JSDom support.
 
-6. Add errors reporter.
+6. Add errors reporter +
 
 7. Add --watch (-w) mode.
 
@@ -264,4 +264,10 @@ Good example of such docs: https://github.com/avajs/ava/tree/master/docs.
 
 14. Pass "assert" as an argument into the callback.
 
-15. Introduce timeout, after which test will fail.
+15. Introduce timieout, after which test will fail.
+
+16. Write instruction about how to set up project to build cli (with watch and chmod scripts). 
+
+17. Add report message for empty result: 'no tests to run'.
+
+18. Add possibility to pass file path to the cli as an argument.

@@ -16,6 +16,6 @@ export class InitCommand extends Command {
   }
 
   public execute() {
-    console.log(this.program);
+    console.log("Run Init Command");
   }
 }

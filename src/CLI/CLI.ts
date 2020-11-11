@@ -34,7 +34,6 @@ export class CLI {
      *   to extract and use. In particularly we have command name and it's arguments in the "this.program.args".
      *   Boolean options are written into the "this.program" directly."
      */
-    console.log(this.program);
     const commandName = this.program.args[0] || CommandName.RUN;
 
     this.commands.get(commandName).execute();

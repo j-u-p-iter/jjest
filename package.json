@@ -13,7 +13,7 @@
   "scripts": {
     "commit": "jupiter-scripts precommit --allowJs",
     "build": "jupiter-scripts build --module=CommonJS",
-    "build:watch": "watch 'yarn run build && yarn run changePermission' ./dist",
+    "build:watch": "watch 'yarn run build && yarn run changePermission' ./src",
     "start": "yarn run build --watch",
     "lint": "jupiter-scripts lint --format codeFrame",
     "lint:fix": "yarn run lint --fix",
@@ -21,13 +21,15 @@
     "changePermission": "chmod +x dist/lib/*.js"
   },
   "devDependencies": {
-    "@j.u.p.iter/jupiter-scripts": "^1.17.0"
+    "@j.u.p.iter/jupiter-scripts": "^1.17.0",
+    "@types/node": "^14.14.6"
   },
   "dependencies": {
     "@j.u.p.iter/react-tree": "^1.1.0",
     "@j.u.p.iter/recursive-read-dir": "^1.2.0",
     "@testy/assertion": "^0.1.1",
     "ink": "^3.0.7",
-    "react": "^17.0.0"
+    "react": "^17.0.0",
+    "ts-node": "^9.0.0"
   }
 }
