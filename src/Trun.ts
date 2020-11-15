@@ -1,3 +1,5 @@
+import * as tsNode from "ts-node";
+
 import { EventManager } from "./EventManager";
 import { Parser } from "./Parser";
 import { Reporter } from "./Reporter";
@@ -7,7 +9,11 @@ import { Scanner } from "./Scanner";
 const eventManager = new EventManager();
 
 export class Trun {
-  async run() {
+  private setUp(tsConfig) {
+    tsNode.register(tsConfig);
+  }
+
+  private async runSequence() {
     /**
      * Contains actions,
      * according to the order we run them.
@@ -61,5 +67,11 @@ export class Trun {
     for (const step of revertedSequence) {
       await step();
     }
+  }
+
+  public run(tsConfig) {
+    this.setUp(tsConfig);
+
+    this.runSequence();
   }
 }

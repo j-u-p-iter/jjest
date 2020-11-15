@@ -1,5 +1,3 @@
-import * as tsNode from "ts-node";
-
 import { EventManager } from "./EventManager";
 
 import { TestSuite } from "./TestSuite";
@@ -27,14 +25,9 @@ import { TrunEvent } from "./types";
  */
 
 export class Parser {
-  private registerTypeScriptLoader() {
-    tsNode.register();
-  }
-
   constructor(private eventManager: EventManager) {}
 
   public init() {
-    this.registerTypeScriptLoader();
 
     this.eventManager.on(TrunEvent.SCAN_TEST_FILES, testFiles => {
       const testsSuites = testFiles.map(testFile => {

@@ -103,4 +103,9 @@ export interface ItReportError {
   context: TestSuite;
 }
 
+export interface TrunConfigOptions {
+  tsconfig?: string;
+  watch?: boolean;
+}
+
 export { TestSuite };

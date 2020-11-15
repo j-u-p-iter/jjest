@@ -32,7 +32,7 @@ export class CLI {
     /**
      * After we've parsed the process args, we have parsed results into the "this.program"
      *   to extract and use. In particularly we have command name and it's arguments in the "this.program.args".
-     *   Boolean options are written into the "this.program" directly."
+     *     Boolean options are written into the "this.program" directly."
      */
     const commandName = this.program.args[0] || CommandName.RUN;
 

@@ -1,17 +1,22 @@
 import { Trun } from "../Trun";
 import { Command } from "./Command";
 
+import { TSConfig, TrunConfig } from '../Config';
+
 /**
  * This is default command. It's used to run tests.
- *
  */
 export class RunCommand extends Command {
   private validOptions = ["watch"];
 
   private trun = new Trun();
 
-  private runTests() {
-    this.trun.run();
+  private trunConfig;
+
+  private async runTests() {
+    const tsConfig = await new TSConfig().load();
+
+    this.trun.run(tsConfig);
   }
 
   constructor(private program) {
@@ -27,10 +32,12 @@ export class RunCommand extends Command {
     return this;
   }
 
-  public execute() {
+  public async execute() {
     const commandOptions = this.prepareOptions(this.program, this.validOptions);
 
-    if (commandOptions.watch) {
+    this.trunConfig = await new TrunConfig().load();
+
+    if (commandOptions.watch || this.trunConfig.watch) {
       /**
        * Rerun trun on change
        */

@@ -233,8 +233,8 @@ Next tasks to do:
 1. Read options from config file / command line.
 
   Next things should be put into the config:
-    - filePatternToInclude (is used in the Scanner)
-    - dirPatternToExclude (is used in the Scanner)
+    - filePatternToInclude (is used in the Scanner);
+    - dirPatternToExclude (is used in the Scanner).
 
 2. Read event names from an enum.
 

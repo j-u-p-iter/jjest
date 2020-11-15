@@ -56,6 +56,11 @@
   resolved "https://registry.yarnpkg.com/@j.u.p.iter/caller-path/-/caller-path-1.0.1.tgz#4d985a8b1f04d967499226ae097a8210e83bdf3b"
   integrity sha512-Zn5G9xMgY+W0eTgcws+pe3tWVSViYHGGM70ThLS82aU/dWlSs2dD7qlUehFWDlhz0neAr1UywpBgNW0noz6mCQ==
 
+"@j.u.p.iter/find-path-to-file@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@j.u.p.iter/find-path-to-file/-/find-path-to-file-1.0.1.tgz#55927c78f0ef9c641f6080a51cf21ee673d4a791"
+  integrity sha512-PQ7SG0u+91Cu+i6WkltNf4Yo4cgnfI+yvWCzieDEdf/0lNt1hU6hQzI3f+PYW1R8cMYRrUe3IrahASLn/pZMTQ==
+
 "@j.u.p.iter/jupiter-scripts@^1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@j.u.p.iter/jupiter-scripts/-/jupiter-scripts-1.17.0.tgz#3cc8fe0dc96652d6ea8173963cad2155c5feafd8"
@@ -151,11 +156,6 @@
   version "14.11.8"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.8.tgz#fe2012f2355e4ce08bca44aeb3abbb21cf88d33f"
   integrity sha512-KPcKqKm5UKDkaYPTuXSx8wEP7vE9GnuaXIZKijwRYcePpZFDVuy2a57LarFKiORbHOuTOOwYzxVxcUzsh2P2Pw==
-
-"@types/node@^14.14.6":
-  version "14.14.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.6.tgz#146d3da57b3c636cc0d1769396ce1cfa8991147f"
-  integrity sha512-6QlRuqsQ/Ox/aJEQWBEJG7A9+u7oSYl3mem/K8IzxXG/kAGbV1YPD9Bg9Zw3vyxC/YP+zONKwy8hGkSt1jxFMw==
 
 "@types/yoga-layout@1.9.2":
   version "1.9.2"
