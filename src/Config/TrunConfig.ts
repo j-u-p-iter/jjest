@@ -1,8 +1,8 @@
-import { Config } from './Config';
-import { TrunConfigOptions } from '../types';
+import { TrunConfigOptions } from "../types";
+import { Config } from "./Config";
 
 export class TrunConfig extends Config {
-  private defaultName = 'trunconfig.json'
+  private defaultName = "trunconfig.json";
 
   /**
    * 1. At first we try to read a config from CLI.
@@ -23,13 +23,13 @@ export class TrunConfig extends Config {
   }
 
   public async load(): Promise<TrunConfigOptions> {
-    const resolvedPathToConfig = await this.resolvePath(this.getPathToConfig()); 
+    const resolvedPathToConfig = await this.resolvePath(this.getPathToConfig());
 
     let config;
 
     try {
-      config = this.readFile(resolvedPathToConfig);
-    } catch(error) {
+      config = JSON.parse(this.readFile(resolvedPathToConfig));
+    } catch (error) {
       throw new Error(
         `An error occured while reading the configuration file: ${resolvedPathToConfig}`
       );

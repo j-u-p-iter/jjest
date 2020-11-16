@@ -1,7 +1,7 @@
-import path from 'path';
-import { readFileSync } from 'fs';
+import { readFileSync } from "fs";
+import path from "path";
 
-import { findPathToFile } from '@j.u.p.iter/find-path-to-file';
+import { findPathToFile } from "@j.u.p.iter/find-path-to-file";
 
 export class Config {
   /**
@@ -13,11 +13,11 @@ export class Config {
    */
   private async getPathToRootFolder() {
     try {
-      const { filePath } = await findPathToFile('package.json'); 
+      const { filePath } = await findPathToFile("package.json");
 
-      return filePath.replace('package.json', '');
-    } catch(error) {
-      throw new Error('The project should have package.json file.')
+      return filePath.replace("package.json", "");
+    } catch (error) {
+      throw new Error("The project should have package.json file.");
     }
   }
 

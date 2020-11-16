@@ -1,22 +1,37 @@
 import { Trun } from "../Trun";
 import { Command } from "./Command";
 
-import { TSConfig, TrunConfig } from '../Config';
+import { TrunConfig, TSConfig } from "../Config";
 
 /**
  * This is default command. It's used to run tests.
+ *
  */
 export class RunCommand extends Command {
-  private validOptions = ["watch"];
+  private validOptions = ["watch", "config", "tsconfig"];
 
   private trun = new Trun();
 
   private trunConfig;
 
+  private commandOptions;
+
   private async runTests() {
-    const tsConfig = await new TSConfig().load();
+    const tsConfig = await new TSConfig(this.resolveOption("tsconfig")).load();
 
     this.trun.run(tsConfig);
+  }
+
+  private resolveOption(optionName) {
+    return this.commandOptions[optionName] || this.trunConfig[optionName];
+  }
+
+  private readCommandOptions() {
+    this.commandOptions = this.prepareOptions(this.program, this.validOptions);
+  }
+
+  private async readConfig() {
+    this.trunConfig = await new TrunConfig(this.commandOptions.config).load();
   }
 
   constructor(private program) {
@@ -24,22 +39,37 @@ export class RunCommand extends Command {
   }
 
   public initialize() {
-    this.program.option(
-      "--watch",
-      "Enables watching mode (rerun tests on change the tests or the main code)"
-    );
+    this.program
+      .option(
+        "-w, --watch",
+        "Enables watching mode (rerun tests on change the tests or the main code)"
+      )
+      .option(
+        "-c, --config <pathToConfig>",
+        "Sets up a file's path to a config"
+      )
+      .option(
+        "-ts, --tsconfig <pathToTSConfig>",
+        "Sets up a file's path to a typescript config"
+      );
 
     return this;
   }
 
   public async execute() {
-    const commandOptions = this.prepareOptions(this.program, this.validOptions);
+    /**
+     * Options can be passed:
+     *
+     * 1. With CLI.
+     * 2. Set up in the config.
+     *
+     */
+    this.readCommandOptions();
+    await this.readConfig();
 
-    this.trunConfig = await new TrunConfig().load();
-
-    if (commandOptions.watch || this.trunConfig.watch) {
+    if (this.resolveOption("watch")) {
       /**
-       * Rerun trun on change
+       * Rerun trun on file changes
        */
     } else {
       this.runTests();

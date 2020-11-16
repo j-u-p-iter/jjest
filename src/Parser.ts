@@ -28,7 +28,6 @@ export class Parser {
   constructor(private eventManager: EventManager) {}
 
   public init() {
-
     this.eventManager.on(TrunEvent.SCAN_TEST_FILES, testFiles => {
       const testsSuites = testFiles.map(testFile => {
         const testSuite = new TestSuite(testFile);

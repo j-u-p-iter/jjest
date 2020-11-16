@@ -1,2 +1,2 @@
-export * from './TrunConfig';
-export * from './TSConfig';
+export * from "./TrunConfig";
+export * from "./TSConfig";
