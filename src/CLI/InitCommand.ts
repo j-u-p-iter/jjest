@@ -1,3 +1,4 @@
+import { TrunConfig } from "../Config";
 import { Command, CommandName } from "./Command";
 
 export class InitCommand extends Command {
@@ -16,6 +17,6 @@ export class InitCommand extends Command {
   }
 
   public execute() {
-    console.log("Run Init Command");
+    new TrunConfig().create();
   }
 }

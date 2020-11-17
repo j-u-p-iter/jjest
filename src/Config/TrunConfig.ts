@@ -1,7 +1,13 @@
+import { writeFileSync } from "fs";
 import { TrunConfigOptions } from "../types";
 import { Config } from "./Config";
 
 export class TrunConfig extends Config {
+  private initialData: TrunConfigOptions = {
+    dirPatternToExclude: "node_modules",
+    filePatternToInclude: ".spec.ts"
+  };
+
   private defaultName = "trunconfig.json";
 
   /**
@@ -36,5 +42,11 @@ export class TrunConfig extends Config {
     }
 
     return config;
+  }
+
+  public async create() {
+    const pathToConfig = await this.resolvePath(this.defaultName);
+
+    writeFileSync(pathToConfig, JSON.stringify(this.initialData));
   }
 }

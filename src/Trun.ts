@@ -13,7 +13,7 @@ export class Trun {
     tsNode.register(tsConfig);
   }
 
-  private async runSequence() {
+  private async runSequence(options) {
     /**
      * Contains actions,
      * according to the order we run them.
@@ -28,7 +28,10 @@ export class Trun {
        *
        */
       async () => {
-        const scanner = new Scanner(eventManager);
+        const { dirPatternToExclude, filePatternToInclude } = options;
+        const scannerConfig = { dirPatternToExclude, filePatternToInclude };
+
+        const scanner = new Scanner(eventManager, scannerConfig);
         await scanner.scanTestFiles();
       },
 
@@ -69,9 +72,9 @@ export class Trun {
     }
   }
 
-  public run(tsConfig) {
+  public run(tsConfig, options) {
     this.setUp(tsConfig);
 
-    this.runSequence();
+    this.runSequence(options);
   }
 }

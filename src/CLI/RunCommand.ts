@@ -19,11 +19,15 @@ export class RunCommand extends Command {
   private async runTests() {
     const tsConfig = await new TSConfig(this.resolveOption("tsconfig")).load();
 
-    this.trun.run(tsConfig);
+    this.trun.run(tsConfig, this.resolveOptions());
   }
 
   private resolveOption(optionName) {
     return this.commandOptions[optionName] || this.trunConfig[optionName];
+  }
+
+  private resolveOptions() {
+    return { ...this.trunConfig, ...this.commandOptions };
   }
 
   private readCommandOptions() {

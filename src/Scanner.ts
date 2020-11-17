@@ -22,14 +22,21 @@ import { TrunEvent } from "./types";
  *
  */
 
+interface ScannerConfig {
+  dirPatternToExclude: string;
+  filePatternToInclude: string;
+}
+
 export class Scanner {
-  constructor(private eventManager: EventManager) {}
+  constructor(
+    private eventManager: EventManager,
+    private config: ScannerConfig
+  ) {}
 
   public async scanTestFiles() {
     const testFiles = await readDir(process.cwd(), {
-      format: Format.FILES,
-      dirPatternToExclude: "node_modules",
-      filePatternToInclude: ".spec.ts"
+      ...this.config,
+      format: Format.FILES
     });
 
     this.eventManager.emit(TrunEvent.SCAN_TEST_FILES, testFiles);
