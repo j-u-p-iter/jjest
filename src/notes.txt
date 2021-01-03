@@ -271,3 +271,9 @@ Good example of such docs: https://github.com/avajs/ava/tree/master/docs.
 17. Add report message for empty result: 'no tests to run'.
 
 18. Add possibility to pass file path to the cli as an argument.
+
+19. Add timeout for each test to run.
+
+20. Read docs here "https://github.com/thetutlage/japa" and add new tasks according to the docs.
+
+21. Read docs here "https://github.com/avajs/ava/tree/master/docs" and add new tasks according to the docs.
