@@ -1,0 +1,20 @@
+{
+  "name": "@j.u.p.iter/jtrun-test",
+  "version": "0.0.0-semantically-released",
+  "description": "Files scanner",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "jupiter-scripts build",
+    "lint": "jupiter-scripts lint",
+    "test": "jupiter-scripts test"
+  },
+  "dependencies": {
+    "@j.u.p.iter/jtrun-event-manager": "workspace:^",
+    "@j.u.p.iter/jtrun-scanner": "workspace:^"
+  }
+}

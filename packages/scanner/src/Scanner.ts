@@ -1,8 +1,9 @@
 import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
 
-import { EventManager } from "./EventManager";
+import { TrunConfigOptions } from '@j.u.p.iter/jtrun-config';
+import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
 
-import { TrunEvent } from "./types";
+import { TrunEvent } from "./types.js";
 
 /**
  * The running tests process consists of multiple steps.
@@ -22,15 +23,13 @@ import { TrunEvent } from "./types";
  *
  */
 
-interface ScannerConfig {
-  dirPatternToExclude: string;
-  filePatternToInclude: string;
-}
-
 export class Scanner {
   constructor(
     private eventManager: EventManager,
-    private config: ScannerConfig
+    private config: Pick<
+      TrunConfigOptions, 
+      "dirPatternToExclude" | "filePatternToInclude"
+    >
   ) {}
 
   public async scanTestFiles() {

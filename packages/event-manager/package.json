@@ -1,0 +1,16 @@
+{
+  "name": "@j.u.p.iter/jtrun-event-manager",
+  "version": "0.0.0-semantically-released",
+  "description": "Event manager",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "jupiter-scripts build",
+    "lint": "jupiter-scripts lint",
+    "test": "jupiter-scripts test"
+  }
+}
