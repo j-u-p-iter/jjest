@@ -1,7 +1,7 @@
 {
-  "name": "@j.u.p.iter/jtrun-parser",
+  "name": "@j.u.p.iter/jtrun-types",
   "version": "0.0.0-semantically-released",
-  "description": "Parser",
+  "description": "Common test runner types",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,10 +12,5 @@
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
     "test": "jupiter-scripts test"
-  },
-  "dependencies": {
-    "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-test-suite": "workspace:^",
-    "@j.u.p.iter/jtrun-types": "workspace:^"
   }
 }

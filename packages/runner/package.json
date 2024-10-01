@@ -1,7 +1,7 @@
 {
-  "name": "@j.u.p.iter/jtrun-test",
+  "name": "@j.u.p.iter/jtrun-runner",
   "version": "0.0.0-semantically-released",
-  "description": "Packages tester. Very useful to provide examples of how to use the packages and at the same time useful to test them.",
+  "description": "Parser",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-scanner": "workspace:^",
-    "@j.u.p.iter/jtrun-types": "workspace:^"
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^",
+    "@j.u.p.iter/jtrun-types": "workspace:^",
+    "@j.u.p.iter/jtrun-helpers": "workspace:^"
   }
 }

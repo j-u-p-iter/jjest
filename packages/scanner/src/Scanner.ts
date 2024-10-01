@@ -2,8 +2,7 @@ import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
 
 import { TrunConfigOptions } from '@j.u.p.iter/jtrun-config';
 import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
-
-import { TrunEvent } from "./types.js";
+import { TrunEvent } from "@j.u.p.iter/jtrun-types";
 
 /**
  * The running tests process consists of multiple steps.

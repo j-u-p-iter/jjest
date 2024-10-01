@@ -1,4 +1,4 @@
-import { Store } from "./Store";
+import { Store } from "@j.u.p.iter/jtrun-store";
 
 import {
   ActionType,
@@ -9,7 +9,7 @@ import {
   TestHook,
   TestHookType,
   TestSuiteStatus
-} from "./types";
+} from "@j.u.p.iter/jtrun-types";
 
 export interface TestBlock {
   description: string;
@@ -19,7 +19,7 @@ export interface TestBlock {
 export type TestBlocks = TestBlock[];
 
 export class TestSuite extends Store {
-  private createDescribe(description, fn): DescribeBlock {
+  private createDescribe(description: string, fn: () => void): DescribeBlock {
     return {
       description,
       fn,
@@ -29,7 +29,7 @@ export class TestSuite extends Store {
     };
   }
 
-  private createIt(description, fn): ItBlock {
+  private createIt(description: string, fn: () => void): ItBlock {
     return {
       description,
       fn,
@@ -44,7 +44,7 @@ export class TestSuite extends Store {
   }
 
   private declareTestHelpers() {
-    (global as any).describe = (description, fn) => {
+    (global as any).describe = (description: string, fn: () => void) => {
       const newDescribe = this.createDescribe(description, fn);
 
       this.dispatch({
@@ -60,14 +60,14 @@ export class TestSuite extends Store {
       });
     };
 
-    (global as any).it = (description, fn) => {
+    (global as any).it = (description: string, fn: () => void) => {
       this.dispatch({
         type: ActionType.RUN_IT,
         payload: { it: this.createIt(description, fn) }
       });
     };
 
-    (global as any).beforeEach = fn => {
+    (global as any).beforeEach = (fn: () => void) => {
       this.dispatch({
         type: ActionType.RUN_BEFORE_EACH,
         payload: {
@@ -76,7 +76,7 @@ export class TestSuite extends Store {
       });
     };
 
-    (global as any).afterEach = fn => {
+    (global as any).afterEach = (fn: () => void) => {
       this.dispatch({
         type: ActionType.RUN_AFTER_EACH,
         payload: {
@@ -86,7 +86,7 @@ export class TestSuite extends Store {
     };
   }
 
-  constructor(public testFilePath) {
+  constructor(public testFilePath: string) {
     super();
 
     this.declareTestHelpers();

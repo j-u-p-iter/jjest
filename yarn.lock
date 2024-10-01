@@ -774,13 +774,59 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@j.u.p.iter/jtrun-helpers@workspace:packages/helpers":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-helpers@workspace:packages/helpers"
+  dependencies:
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-parser@workspace:packages/parser":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-parser@workspace:packages/parser"
+  dependencies:
+    "@j.u.p.iter/jtrun-event-manager": "workspace:^"
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-runner@workspace:packages/runner":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-runner@workspace:packages/runner"
+  dependencies:
+    "@j.u.p.iter/jtrun-event-manager": "workspace:^"
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@j.u.p.iter/jtrun-scanner@workspace:^, @j.u.p.iter/jtrun-scanner@workspace:packages/scanner":
   version: 0.0.0-use.local
   resolution: "@j.u.p.iter/jtrun-scanner@workspace:packages/scanner"
   dependencies:
     "@j.u.p.iter/jtrun-config": "workspace:^"
     "@j.u.p.iter/jtrun-event-manager": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
     "@j.u.p.iter/recursive-read-dir": "npm:^1.2.0"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-store@workspace:^, @j.u.p.iter/jtrun-store@workspace:packages/store":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-store@workspace:packages/store"
+  dependencies:
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-test-suite@workspace:^, @j.u.p.iter/jtrun-test-suite@workspace:packages/test-suite":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-test-suite@workspace:packages/test-suite"
+  dependencies:
+    "@j.u.p.iter/jtrun-store": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -790,6 +836,13 @@ __metadata:
   dependencies:
     "@j.u.p.iter/jtrun-event-manager": "workspace:^"
     "@j.u.p.iter/jtrun-scanner": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-types@workspace:^, @j.u.p.iter/jtrun-types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-types@workspace:packages/types"
   languageName: unknown
   linkType: soft
 
@@ -5252,12 +5305,6 @@ __metadata:
   checksum: 1c05c05f95f184ab9ca604841d78e4fe3294d46b8e3641d305dcc28e930da0e14e602dbda9f3811cd48df5b0e2e27dbef7357bf0d7c40e41b18c11c3a8b8d17b
   languageName: node
   linkType: hard
-
-"parser-17af69@workspace:packages/parser":
-  version: 0.0.0-use.local
-  resolution: "parser-17af69@workspace:packages/parser"
-  languageName: unknown
-  linkType: soft
 
 "path-exists@npm:^4.0.0":
   version: 4.0.0

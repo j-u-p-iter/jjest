@@ -1,12 +1,12 @@
 // https://github.com/twosmalltrees/pretzel-test/blob/master/src/runner.ts
 
-import { EventManager } from "./EventManager";
-import { delay, isDescribeBlock } from "./helpers";
-import { TestSuite } from "./TestSuite";
-import { TestHookType, TestSuiteStatus, TrunEvent } from "./types";
+import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
+import { delay, isDescribeBlock } from "@j.u.p.iter/jtrun-helpers";
+import { TestSuite } from "@j.u.p.iter/jtrun-test-suite";
+import { TestHook, TestHookType, TestSuiteStatus, TrunEvent } from "@j.u.p.iter/jtrun-types";
 
 export class Runner {
-  private runBeforeEachHooks(hooks) {
+  private runBeforeEachHooks(hooks: TestHook[]) {
     const resultHooks = hooks.filter(
       ({ type }) => type === TestHookType.BEFORE_EACH
     );
@@ -14,7 +14,7 @@ export class Runner {
     this.runHooks(resultHooks);
   }
 
-  public runAfterEachHooks(hooks) {
+  public runAfterEachHooks(hooks: TestHook[]) {
     const resultHooks = hooks.filter(
       ({ type }) => type === TestHookType.AFTER_EACH
     );
@@ -22,7 +22,7 @@ export class Runner {
     this.runHooks(resultHooks);
   }
 
-  private runHooks(hooks) {
+  private runHooks(hooks: TestHook[]) {
     for (const hook of hooks) {
       hook.fn();
     }

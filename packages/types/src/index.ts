@@ -1,6 +1,3 @@
-import { ItReport } from "./Report";
-import { TestSuite } from "./TestSuite";
-
 export enum TestSuiteStatus {
   INACTIVE = "inactive",
   RUNS = "runs",
@@ -79,11 +76,6 @@ export enum ActionType {
   FAIL_IT = "FAIL_IT"
 }
 
-//export interface ReportResultTree {
-  //title: string;
-  //children?: Array<ReportResultTree | ItReport>;
-//}
-
 export enum TrunEvent {
   PARSE_TESTS_SUITES = "parseTestsSuites",
 
@@ -95,6 +87,16 @@ export enum TrunEvent {
 
   FINISH_RUNNING_TESTS = "finishRunningTests"
 }
+
+export type Action = {
+  type: ActionType;
+  payload: any;
+};
+
+//export interface ReportResultTree {
+  //title: string;
+  //children?: Array<ReportResultTree | ItReport>;
+//}
 
 //export interface ItReportError {
   //title: string;

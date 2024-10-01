@@ -15,6 +15,8 @@ export class TrunConfig extends Config {
    *
    * 2. If there's no any config, provided by CLI, we try to find
    *   the config in the project's root folder.
+   *
+   * 3. The provided path should be relative to the root folder of the package.
    */
   private getPathToConfig() {
     if (this.pathToConfigFromCLI) {

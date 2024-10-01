@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "es2015",
+    "lib": [
+      "es2015",
+      "es2016",
+      "es2017",
+      "dom"
+    ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "outDir": "/Users/j.u.p.iter/projects/jupiter-scripts/dist/lib",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "include": [
+    "/Users/j.u.p.iter/projects/jupiter-scripts/src"
+  ],
+  "exclude": [
+    "/Users/j.u.p.iter/projects/jupiter-scripts/src/coverage",
+    "/Users/j.u.p.iter/projects/jupiter-scripts/src/node_modules",
+    "/Users/j.u.p.iter/projects/jupiter-scripts/src/tests/**/*",
+    "/Users/j.u.p.iter/projects/jupiter-scripts/src/**/*.spec.ts"
+  ]
+}

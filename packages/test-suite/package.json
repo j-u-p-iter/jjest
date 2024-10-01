@@ -1,7 +1,7 @@
 {
-  "name": "@j.u.p.iter/jtrun-test",
+  "name": "@j.u.p.iter/jtrun-test-suite",
   "version": "0.0.0-semantically-released",
-  "description": "Packages tester. Very useful to provide examples of how to use the packages and at the same time useful to test them.",
+  "description": "Test suite",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,7 @@
     "test": "jupiter-scripts test"
   },
   "dependencies": {
-    "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-scanner": "workspace:^",
+    "@j.u.p.iter/jtrun-store": "workspace:^",
     "@j.u.p.iter/jtrun-types": "workspace:^"
   }
 }

@@ -1,0 +1,4 @@
+{
+  "dirPatternToExclude": "node_modules",
+  "filePatternToInclude": ".spec.ts"
+}
