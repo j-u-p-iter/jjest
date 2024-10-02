@@ -1,7 +1,7 @@
 {
-  "name": "@j.u.p.iter/jtrun-runner",
+  "name": "@j.u.p.iter/jtrun-report",
   "version": "0.0.0-semantically-released",
-  "description": "Parser",
+  "description": "Report",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,8 +14,6 @@
     "test": "jupiter-scripts test"
   },
   "dependencies": {
-    "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-helpers": "workspace:^",
     "@j.u.p.iter/jtrun-test-suite": "workspace:^",
     "@j.u.p.iter/jtrun-types": "workspace:^"
   }

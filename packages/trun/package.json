@@ -1,5 +1,5 @@
 {
-  "name": "@j.u.p.iter/jtrun-runner",
+  "name": "@j.u.p.iter/jtrun-trun",
   "version": "0.0.0-semantically-released",
   "description": "Parser",
   "type": "module",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-helpers": "workspace:^",
     "@j.u.p.iter/jtrun-test-suite": "workspace:^",
     "@j.u.p.iter/jtrun-types": "workspace:^"
   }

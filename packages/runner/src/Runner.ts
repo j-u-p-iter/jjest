@@ -3,7 +3,7 @@
 import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
 import { delay, isDescribeBlock } from "@j.u.p.iter/jtrun-helpers";
 import { TestSuite } from "@j.u.p.iter/jtrun-test-suite";
-import { TestHook, TestHookType, TestSuiteStatus, TrunEvent } from "@j.u.p.iter/jtrun-types";
+import { ActionType, TestHook, TestHookType, TestSuiteStatus, TrunEvent, DescribeBlock } from "@j.u.p.iter/jtrun-types";
 
 export class Runner {
   private runBeforeEachHooks(hooks: TestHook[]) {
@@ -31,32 +31,36 @@ export class Runner {
   private async runTestSuite(testSuite: TestSuite) {
     const rootDescribeBlock = testSuite.getState().rootDescribeBlock;
 
-    const run = async describeBlock => {
+    const run = (describeBlock: DescribeBlock) => {
       for (const childTestBlock of describeBlock.children) {
         if (isDescribeBlock(childTestBlock)) {
           run(childTestBlock);
         } else {
           try {
-            this.runBeforeEachHooks(childTestBlock.parent.hooks);
+            if (childTestBlock.parent) {
+              this.runBeforeEachHooks(childTestBlock.parent.hooks);
+            }
 
             testSuite.dispatch({
-              type: "START_IT",
+              type: ActionType.START_IT,
               payload: { it: childTestBlock }
             });
 
             childTestBlock.fn();
 
             testSuite.dispatch({
-              type: "FINISH_IT",
+              type: ActionType.FINISH_IT,
               payload: { it: childTestBlock }
             });
 
-            this.runAfterEachHooks(childTestBlock.parent.hooks);
+            if (childTestBlock.parent) {
+              this.runAfterEachHooks(childTestBlock.parent.hooks);
+            }
           } catch (error) {
             testSuite.setStatus(TestSuiteStatus.FAILED);
 
             testSuite.dispatch({
-              type: "FAIL_IT",
+              type: ActionType.FAIL_IT,
               payload: { error, it: childTestBlock }
             });
           }
@@ -69,7 +73,9 @@ export class Runner {
     testSuite.setStatus(TestSuiteStatus.RUNS);
     this.eventManager.emit(TrunEvent.RUN_TEST_SUITE, testSuite);
 
-    await delay(() => run(rootDescribeBlock));
+    if (rootDescribeBlock) {
+      await delay(() => run(rootDescribeBlock));
+    }
 
     if (testSuite.status === TestSuiteStatus.RUNS) {
       testSuite.setStatus(TestSuiteStatus.PASSED);

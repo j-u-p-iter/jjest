@@ -774,7 +774,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@j.u.p.iter/jtrun-helpers@workspace:packages/helpers":
+"@j.u.p.iter/jtrun-helpers@workspace:^, @j.u.p.iter/jtrun-helpers@workspace:packages/helpers":
   version: 0.0.0-use.local
   resolution: "@j.u.p.iter/jtrun-helpers@workspace:packages/helpers"
   dependencies:
@@ -792,11 +792,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@j.u.p.iter/jtrun-report@workspace:packages/report":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-report@workspace:packages/report"
+  dependencies:
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-reporter@workspace:packages/reporter":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-reporter@workspace:packages/reporter"
+  dependencies:
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
 "@j.u.p.iter/jtrun-runner@workspace:packages/runner":
   version: 0.0.0-use.local
   resolution: "@j.u.p.iter/jtrun-runner@workspace:packages/runner"
   dependencies:
     "@j.u.p.iter/jtrun-event-manager": "workspace:^"
+    "@j.u.p.iter/jtrun-helpers": "workspace:^"
     "@j.u.p.iter/jtrun-test-suite": "workspace:^"
     "@j.u.p.iter/jtrun-types": "workspace:^"
   languageName: unknown
@@ -836,6 +855,16 @@ __metadata:
   dependencies:
     "@j.u.p.iter/jtrun-event-manager": "workspace:^"
     "@j.u.p.iter/jtrun-scanner": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"@j.u.p.iter/jtrun-trun@workspace:packages/trun":
+  version: 0.0.0-use.local
+  resolution: "@j.u.p.iter/jtrun-trun@workspace:packages/trun"
+  dependencies:
+    "@j.u.p.iter/jtrun-event-manager": "workspace:^"
+    "@j.u.p.iter/jtrun-test-suite": "workspace:^"
     "@j.u.p.iter/jtrun-types": "workspace:^"
   languageName: unknown
   linkType: soft

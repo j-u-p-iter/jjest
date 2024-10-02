@@ -22,7 +22,8 @@
     "build:test-suite": "yarn workspace @j.u.p.iter/jtrun-test-suite run build",
     "build:parser": "yarn workspace @j.u.p.iter/jtrun-parser run build",
     "build:helpers": "yarn workspace @j.u.p.iter/jtrun-helpers run build",
-    "build:runner": "yarn workspace @j.u.p.iter/jtrun-runner run build"
+    "build:runner": "yarn workspace @j.u.p.iter/jtrun-runner run build",
+    "build:report": "yarn workspace @j.u.p.iter/jtrun-report run build"
   },
   "devDependencies": {
     "@j.u.p.iter/scripts": "^1.6.1"

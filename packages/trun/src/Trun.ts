@@ -1,10 +1,10 @@
 import * as tsNode from "ts-node";
 
-import { EventManager } from "./EventManager";
-import { Parser } from "./Parser";
-import { Reporter } from "./Reporter";
-import { Runner } from "./Runner";
-import { Scanner } from "./Scanner";
+import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
+import { Parser } from "@j.u.p.iter/jtrun-parser";
+import { Reporter } from "@j.u.p.iter/jtrun-reporter";
+import { Runner } from "@j.u.p.iter/jtrun-runner";
+import { Scanner } from "@j.u.p.iter/jtrun-scanner";
 
 const eventManager = new EventManager();
 

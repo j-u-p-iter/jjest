@@ -105,4 +105,8 @@ export type Action = {
   //context: TestSuite;
 //}
 
+export type ReportResultTree = any;
+
+export type ItReportError = any;
+
 //export { TestSuite };
