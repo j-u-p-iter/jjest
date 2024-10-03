@@ -17,7 +17,7 @@ const colors: { [key in VisibleStatus]: string } = {
 };
 
 interface StatusIconProps {
-  status: ItStatus;
+  status: VisibleStatus;
 }
 
 export const StatusIcon: FC<StatusIconProps> = ({ status }) => {

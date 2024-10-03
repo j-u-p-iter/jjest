@@ -1,7 +1,7 @@
 import { Box, Text } from "ink";
 import React, { FC } from "react";
 
-import { TestSuiteStatus } from "../types";
+import { TestSuiteStatus } from "@j.u.p.iter/jtrun-types";
 
 const getBackgroundForStatus = (status: TestSuiteStatus) => {
   switch (status) {

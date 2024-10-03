@@ -2,7 +2,7 @@ import { Tree as BaseTree } from "@j.u.p.iter/react-tree";
 import { Box, Text } from "ink";
 import React, { FC } from "react";
 
-import { StatusIcon } from "./StatusIcon";
+import { StatusIcon } from "./StatusIcon.js";
 
 /** The config example 
  
@@ -27,7 +27,7 @@ const config = [{
 
 */
 
-export const Tree: FC = ({ config }) => {
+export const Tree: FC<any> = ({ config }) => {
   if (!config[0].title) {
     return null;
   }
@@ -36,10 +36,10 @@ export const Tree: FC = ({ config }) => {
     <Box marginLeft={1}>
       <BaseTree config={config}>
         {({ api: { getTree } }) => {
-          const renderTree = (tree, level = 0) => {
+          const renderTree = (tree: any, level = 0) => {
             return (
               <Box flexDirection="column" marginLeft={level}>
-                {tree.map((node, index) => {
+                {tree.map((node: any, index: number) => {
                   return node.type === "describe" ? (
                     node.children ? (
                       <Box key={index} flexDirection="column">

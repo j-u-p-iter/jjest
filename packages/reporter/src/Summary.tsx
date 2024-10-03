@@ -4,6 +4,9 @@ import React, { FC } from "react";
 interface SummaryProps {
   totalAmountOfTestSuites: number;
   passedAmountOfTestSuites: number;
+  passedAmountOfTests: number;
+  totalAmountOfTests: number;
+  duration: number;
 }
 
 export const Summary: FC<SummaryProps> = ({

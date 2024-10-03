@@ -1,10 +1,12 @@
 import { Text } from "ink";
 import React, { FC } from "react";
 
-import { isWindows } from "../constants";
-import { ItStatus } from "../types";
+import { isWindows as isWindowsFn } from "@j.u.p.iter/jtrun-helpers";
+import { ItStatus } from "@j.u.p.iter/jtrun-types";
 
 type VisibleStatus = ItStatus.PASSED | ItStatus.FAILED;
+
+const isWindows = isWindowsFn();
 
 const icons: { [key in VisibleStatus]: string } = {
   [ItStatus.PASSED]: isWindows ? "\u221A" : "\u2713",
@@ -17,12 +19,12 @@ const colors: { [key in VisibleStatus]: string } = {
 };
 
 interface StatusIconProps {
-  status: ItStatus;
+  status: VisibleStatus;
 }
 
 export const StatusIcon: FC<StatusIconProps> = ({ status }) => {
   return (
-    <Text color={colors[status]} paddingRight={10}>
+    <Text color={colors[status]}>
       {icons[status]}
     </Text>
   );

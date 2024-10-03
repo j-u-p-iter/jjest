@@ -15,6 +15,10 @@
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-test-suite": "workspace:^",
-    "@j.u.p.iter/jtrun-types": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^",
+    "@j.u.p.iter/react-tree": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11"
   }
 }

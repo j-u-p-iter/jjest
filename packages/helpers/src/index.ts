@@ -13,3 +13,5 @@ export const delay = (fn: () => void = () => {}, timeout: number = 500) => {
     }, timeout);
   });
 }
+
+export const isWindows = () => process.platform === "win32";

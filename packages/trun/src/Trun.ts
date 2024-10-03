@@ -9,11 +9,11 @@ import { Scanner } from "@j.u.p.iter/jtrun-scanner";
 const eventManager = new EventManager();
 
 export class Trun {
-  private setUp(tsConfig) {
+  private setUp(tsConfig: any) {
     tsNode.register(tsConfig);
   }
 
-  private async runSequence(options) {
+  private async runSequence(options: any) {
     /**
      * Contains actions,
      * according to the order we run them.
@@ -76,7 +76,7 @@ export class Trun {
     }
   }
 
-  public run(tsConfig, options) {
+  public run(tsConfig: any, options: any) {
     this.setUp(tsConfig);
 
     this.runSequence(options);

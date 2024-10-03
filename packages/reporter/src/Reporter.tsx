@@ -1,22 +1,23 @@
 import crypto from "crypto";
 import { Box, render } from "ink";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 
 import { CombinedReport, TestSuiteReport } from "@j.u.p.iter/jtrun-report";
 import { TrunEvent } from "@j.u.p.iter/jtrun-types";
+import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
 
-import { Errors } from "./Errors";
-import { Summary } from "./Summary";
-import { Test } from "./Test";
-import { Tree } from "./Tree";
+import { Errors } from "./Errors.js";
+import { Summary } from "./Summary.js";
+import { Test } from "./Test.js";
+import { Tree } from "./Tree.js";
 
-const Report = ({ eventManager, combinedReport }) => {
+const Report: FC<any> = ({ eventManager, combinedReport }) => {
   const [, rerenderComponent] = useState("");
   const [report, setReport] = useState(() => combinedReport);
   const [hasRunningFinished, setHasRunningFinished] = useState(false);
 
   useEffect(() => {
-    eventManager.on(TrunEvent.RUN_TEST_SUITE, testSuite => {
+    eventManager.on(TrunEvent.RUN_TEST_SUITE, (testSuite: any) => {
       setReport(report.addReport(new TestSuiteReport(testSuite).generate()));
       rerenderComponent(crypto.randomBytes(8).toString("hex"));
     });
@@ -33,7 +34,7 @@ const Report = ({ eventManager, combinedReport }) => {
 
   return (
     <Box flexDirection="column">
-      {report.result.map(({ status, testFilePath, tree, duration }, index) => {
+      {report.result.map(({ status, testFilePath, tree, duration }: any, index: any) => {
         return (
           <Box key={index} flexDirection="column">
             <Test status={status} path={testFilePath} duration={duration} />
@@ -50,7 +51,7 @@ const Report = ({ eventManager, combinedReport }) => {
 };
 
 export class Reporter {
-  constructor(private eventManager) {}
+  constructor(private eventManager: EventManager) {}
 
   init() {
     this.eventManager.on(TrunEvent.PARSE_TESTS_SUITES, () => {

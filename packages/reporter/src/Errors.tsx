@@ -9,7 +9,7 @@ export const Errors: FC<ErrorsProps> = ({ errors }) => {
   return errors.length ? (
     <Box flexDirection="column" marginTop={1}>
       <Text>Summary of all failing tests:</Text>
-      {errors.map(error => {
+      {errors.map((error: any) => {
         return (
           <Box key={error.title} flexDirection="column" marginTop={1}>
             <Box marginBottom={1} flexDirection="column">
