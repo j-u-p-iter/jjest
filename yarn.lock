@@ -774,6 +774,8 @@ __metadata:
   resolution: "@j.u.p.iter/jtrun-cli@workspace:packages/cli"
   dependencies:
     commander: "npm:^12.1.0"
+  bin:
+    jtrun: dist/index.js
   languageName: unknown
   linkType: soft
 

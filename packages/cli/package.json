@@ -8,6 +8,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "jtrun": "dist/index.js"
+  },
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
