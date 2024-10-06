@@ -47,6 +47,6 @@ export class TrunConfig extends Config {
   public async create() {
     const pathToConfig = await this.resolvePath(this.defaultName);
 
-    writeFileSync(pathToConfig, JSON.stringify(this.initialData));
+    writeFileSync(pathToConfig, JSON.stringify(this.initialData, null, 2));
   }
 }

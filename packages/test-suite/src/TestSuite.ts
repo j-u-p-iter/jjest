@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+
 import { Store } from "@j.u.p.iter/jtrun-store";
 
 import {
@@ -14,9 +16,11 @@ import {
 export interface TestBlock {
   description: string;
   callback: () => void;
-}
+};
 
 export type TestBlocks = TestBlock[];
+
+const require = createRequire(import.meta.url);
 
 export class TestSuite extends Store {
   private createDescribe(description: string, fn: () => void): DescribeBlock {

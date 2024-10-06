@@ -26,7 +26,8 @@
     "build:report": "yarn workspace @j.u.p.iter/jtrun-report run build",
     "build:reporter": "yarn workspace @j.u.p.iter/jtrun-reporter run build",
     "build:trun": "yarn workspace @j.u.p.iter/jtrun-trun run build",
-    "build:cli": "yarn workspace @j.u.p.iter/jtrun-cli run build"
+    "build:cli": "yarn workspace @j.u.p.iter/jtrun-cli run build",
+    "build:globals": "yarn workspace @j.u.p.iter/jtrun-globals run build"
   },
   "devDependencies": {
     "@j.u.p.iter/scripts": "^1.6.1"

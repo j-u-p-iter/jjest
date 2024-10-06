@@ -1,8 +1,9 @@
 import { Command as Program } from 'commander';
+
 import { Trun } from "@j.u.p.iter/jtrun-trun";
 import { TrunConfig, TSConfig, TrunConfigOptions } from "@j.u.p.iter/jtrun-config";
 
-import { Command } from "./Command.js";
+import { Command, CommandName } from "./Command.js";
 
 /**
  * This is default command. It's used to run tests.
@@ -24,7 +25,7 @@ export class RunCommand extends Command {
   }
 
   private resolveOption(optionName: Exclude<typeof this.validOptions[number], 'config'>) {
-    return this.commandOptions[optionName] || this.trunConfig![optionName];
+    return this.commandOptions[optionName] || this.trunConfig?.[optionName];
   }
 
   private resolveOptions() {
@@ -43,8 +44,11 @@ export class RunCommand extends Command {
     super();
   }
 
+  public name = CommandName.RUN;
+
   public initialize() {
     this.program
+      .command(this.name)
       .option(
         "-w, --watch",
         "Enables watching mode (rerun tests on change the tests or the main code)"
@@ -70,6 +74,7 @@ export class RunCommand extends Command {
      *
      */
     this.readCommandOptions();
+
     await this.readConfig();
 
     if (this.resolveOption("watch")) {
