@@ -1,4 +1,4 @@
-import { Command as Program } from 'commander';
+import { Command as Program } from "commander";
 
 import { TrunConfig } from "@j.u.p.iter/jtrun-config";
 

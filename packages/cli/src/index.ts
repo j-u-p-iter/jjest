@@ -7,7 +7,7 @@ const cli = new CLI();
 const run = async () => {
   try {
     await cli.run();
-  } catch(error) {
+  } catch (error) {
     console.log("Unhandled error caught:", error);
   }
 };

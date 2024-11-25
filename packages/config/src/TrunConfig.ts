@@ -1,11 +1,11 @@
 import { writeFileSync } from "fs";
 import { Config } from "./Config.js";
-import { TrunConfigOptions } from './types.js';
+import { TrunConfigOptions } from "./types.js";
 
 export class TrunConfig extends Config {
   private initialData: TrunConfigOptions = {
     dirPatternToExclude: "node_modules",
-    filePatternToInclude: ".spec.ts"
+    filePatternToInclude: ".spec.ts",
   };
 
   private defaultName = "trunconfig.json";
@@ -39,7 +39,7 @@ export class TrunConfig extends Config {
       config = JSON.parse(this.readFile(resolvedPathToConfig));
     } catch (error) {
       throw new Error(
-        `An error occured while reading the configuration file: ${resolvedPathToConfig}`
+        `An error occured while reading the configuration file: ${resolvedPathToConfig}`,
       );
     }
 

@@ -1,4 +1,4 @@
-import { createRequire } from 'node:module';
+import { createRequire } from "node:module";
 
 import { Store } from "@j.u.p.iter/jtrun-store";
 
@@ -10,13 +10,13 @@ import {
   TestBlockType,
   TestHook,
   TestHookType,
-  TestSuiteStatus
+  TestSuiteStatus,
 } from "@j.u.p.iter/jtrun-types";
 
 export interface TestBlock {
   description: string;
   callback: () => void;
-};
+}
 
 export type TestBlocks = TestBlock[];
 
@@ -29,7 +29,7 @@ export class TestSuite extends Store {
       fn,
       type: TestBlockType.DESCRIBE,
       children: [],
-      hooks: []
+      hooks: [],
     };
   }
 
@@ -39,7 +39,7 @@ export class TestSuite extends Store {
       fn,
       type: TestBlockType.IT,
       status: ItStatus.INACTIVE,
-      error: null
+      error: null,
     };
   }
 
@@ -53,21 +53,21 @@ export class TestSuite extends Store {
 
       this.dispatch({
         type: ActionType.START_DESCRIBE,
-        payload: { describe: newDescribe }
+        payload: { describe: newDescribe },
       });
 
       fn();
 
       this.dispatch({
         type: ActionType.FINISH_DESCRIBE,
-        payload: { describe: newDescribe }
+        payload: { describe: newDescribe },
       });
     };
 
     (global as any).it = (description: string, fn: () => void) => {
       this.dispatch({
         type: ActionType.RUN_IT,
-        payload: { it: this.createIt(description, fn) }
+        payload: { it: this.createIt(description, fn) },
       });
     };
 
@@ -75,8 +75,8 @@ export class TestSuite extends Store {
       this.dispatch({
         type: ActionType.RUN_BEFORE_EACH,
         payload: {
-          beforeEach: this.createTestHook(TestHookType.BEFORE_EACH, fn)
-        }
+          beforeEach: this.createTestHook(TestHookType.BEFORE_EACH, fn),
+        },
       });
     };
 
@@ -84,8 +84,8 @@ export class TestSuite extends Store {
       this.dispatch({
         type: ActionType.RUN_AFTER_EACH,
         payload: {
-          afterEach: this.createTestHook(TestHookType.AFTER_EACH, fn)
-        }
+          afterEach: this.createTestHook(TestHookType.AFTER_EACH, fn),
+        },
       });
     };
   }

@@ -1,10 +1,13 @@
 export enum CommandName {
   RUN = "run",
-  INIT = "init"
+  INIT = "init",
 }
 
 export class Command {
-  public prepareOptions(originalOptions: any, validOptions: any): { [key: string]: any } {
+  public prepareOptions(
+    originalOptions: any,
+    validOptions: any,
+  ): { [key: string]: any } {
     return Object.entries(originalOptions).reduce(
       (resultOptions, [optionName, optionValue]) => {
         if (validOptions.includes(optionName)) {
@@ -13,7 +16,7 @@ export class Command {
 
         return resultOptions;
       },
-      {} as any
+      {} as any,
     );
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-cli",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.4",
   "description": "CLI",
   "type": "module",
   "main": "dist/index.js",
@@ -11,12 +11,18 @@
   "bin": {
     "jtrun": "dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
-    "test": "jupiter-scripts test"
+    "test": "jupiter-scripts test",
+    "publish": "npm publish"
   },
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^12.1.0",
+    "@j.u.p.iter/jtrun-config": "workspace:^",
+    "@j.u.p.iter/jtrun-trun": "workspace:^"
   }
 }

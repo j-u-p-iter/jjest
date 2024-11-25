@@ -2,26 +2,26 @@ export enum TestSuiteStatus {
   INACTIVE = "inactive",
   RUNS = "runs",
   PASSED = "passed",
-  FAILED = "failed"
+  FAILED = "failed",
 }
 
 export enum ItStatus {
   INACTIVE = "inactive",
   RUNS = "runs",
   PASSED = "passed",
-  FAILED = "failed"
+  FAILED = "failed",
 }
 
 export enum TestBlockType {
   DESCRIBE = "describe",
-  IT = "it"
+  IT = "it",
 }
 
 export enum TestHookType {
   BEFORE_ALL = "beforeAll",
   BEFORE_EACH = "beforeEach",
   AFTER_EACH = "afterEach",
-  AFTER_ALL = "afterAll"
+  AFTER_ALL = "afterAll",
 }
 
 export interface TestHook {
@@ -73,7 +73,7 @@ export enum ActionType {
 
   FINISH_IT = "FINISH_IT",
 
-  FAIL_IT = "FAIL_IT"
+  FAIL_IT = "FAIL_IT",
 }
 
 export enum TrunEvent {
@@ -85,7 +85,7 @@ export enum TrunEvent {
 
   SCAN_TEST_FILES = "scanTestFiles",
 
-  FINISH_RUNNING_TESTS = "finishRunningTests"
+  FINISH_RUNNING_TESTS = "finishRunningTests",
 }
 
 export type Action = {
@@ -94,15 +94,15 @@ export type Action = {
 };
 
 //export interface ReportResultTree {
-  //title: string;
-  //children?: Array<ReportResultTree | ItReport>;
+//title: string;
+//children?: Array<ReportResultTree | ItReport>;
 //}
 
 //export interface ItReportError {
-  //title: string;
-  //error: Error;
-  //at: string;
-  //context: TestSuite;
+//title: string;
+//error: Error;
+//at: string;
+//context: TestSuite;
 //}
 
 export type ReportResultTree = any;

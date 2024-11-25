@@ -1,6 +1,6 @@
 import { Format, readDir } from "@j.u.p.iter/recursive-read-dir";
 
-import { TrunConfigOptions } from '@j.u.p.iter/jtrun-config';
+import { TrunConfigOptions } from "@j.u.p.iter/jtrun-config";
 import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
 import { TrunEvent } from "@j.u.p.iter/jtrun-types";
 
@@ -26,15 +26,15 @@ export class Scanner {
   constructor(
     private eventManager: EventManager,
     private config: Pick<
-      TrunConfigOptions, 
+      TrunConfigOptions,
       "dirPatternToExclude" | "filePatternToInclude"
-    >
+    >,
   ) {}
 
   public async scanTestFiles() {
     const testFiles = await readDir(process.cwd(), {
       ...this.config,
-      format: Format.FILES
+      format: Format.FILES,
     });
 
     this.eventManager.emit(TrunEvent.SCAN_TEST_FILES, testFiles);

@@ -66,7 +66,7 @@ export class Trun {
         const reporter = new Reporter(eventManager);
 
         reporter.init();
-      }
+      },
     ];
 
     const revertedSequence = sequence.reverse();

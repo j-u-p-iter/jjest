@@ -4,7 +4,7 @@ import {
   ItStatus,
   TestBlock,
 } from "@j.u.p.iter/jtrun-types";
-import { TestSuite } from '@j.u.p.iter/jtrun-test-suite';
+import { TestSuite } from "@j.u.p.iter/jtrun-test-suite";
 
 export class ItReport {
   private generateErrorTitle() {
@@ -25,12 +25,15 @@ export class ItReport {
     return errorStack
       .split("\n")[1]!
       .match(/\(.*\)/)![0]
-      .replace(/[\(,\)]/g, "");
+      .replace(/[(,)]/g, "");
   }
 
-  constructor(private itBlock: ItBlock, private testSuite: TestSuite) {}
+  constructor(
+    private itBlock: ItBlock,
+    private testSuite: TestSuite,
+  ) {}
 
-  public title: string = '';
+  public title: string = "";
 
   public status: ItStatus = ItStatus.INACTIVE;
 
@@ -41,13 +44,16 @@ export class ItReport {
   public generate(): ItReport {
     this.title = this.itBlock.description;
     this.status = this.itBlock.status;
-    this.duration = this.itBlock.finishTime && this.itBlock.startTime ? this.itBlock.finishTime - this.itBlock.startTime : 0;
+    this.duration =
+      this.itBlock.finishTime && this.itBlock.startTime
+        ? this.itBlock.finishTime - this.itBlock.startTime
+        : 0;
     this.error = this.itBlock.error
       ? {
           title: this.generateErrorTitle(),
           error: this.itBlock.error,
           at: this.prepareAt(this.itBlock.error.stack!),
-          context: this.testSuite
+          context: this.testSuite,
         }
       : null;
 

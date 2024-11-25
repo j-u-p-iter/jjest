@@ -34,14 +34,16 @@ const Report: FC<any> = ({ eventManager, combinedReport }) => {
 
   return (
     <Box flexDirection="column">
-      {report.result.map(({ status, testFilePath, tree, duration }: any, index: any) => {
-        return (
-          <Box key={index} flexDirection="column">
-            <Test status={status} path={testFilePath} duration={duration} />
-            <Tree config={[tree]} />
-          </Box>
-        );
-      })}
+      {report.result.map(
+        ({ status, testFilePath, tree, duration }: any, index: any) => {
+          return (
+            <Box key={index} flexDirection="column">
+              <Test status={status} path={testFilePath} duration={duration} />
+              <Tree config={[tree]} />
+            </Box>
+          );
+        },
+      )}
 
       <Summary {...report.summary()} />
 
@@ -59,7 +61,7 @@ export class Reporter {
         <Report
           eventManager={this.eventManager}
           combinedReport={new CombinedReport()}
-        />
+        />,
       );
     });
   }

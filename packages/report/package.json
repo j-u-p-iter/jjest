@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-report",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.2",
   "description": "Report",
   "type": "module",
   "main": "dist/index.js",
@@ -8,10 +8,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": ["dist"],
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
-    "test": "jupiter-scripts test"
+    "test": "jupiter-scripts test",
+    "publish": "npm publish"
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-test-suite": "workspace:^",

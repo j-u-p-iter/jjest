@@ -32,14 +32,16 @@ export class TSConfig extends Config {
 
     const { error, config } = readConfigFile(
       resolvedPathToConfig,
-      this.readFile
+      this.readFile,
     );
 
     if (error) {
       throw new Error(
-        `An error occured while reading the configuration file: ${resolvedPathToConfig}`
+        `An error occured while reading the configuration file: ${resolvedPathToConfig}`,
       );
     }
+
+    console.log("CONFIG:", config);
 
     return config;
   }

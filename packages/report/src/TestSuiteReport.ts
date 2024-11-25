@@ -6,18 +6,18 @@ import {
   ReportResultTree,
   TestBlock,
   TestBlockType,
-  TestSuiteStatus
+  TestSuiteStatus,
 } from "@j.u.p.iter/jtrun-types";
 import { ItReport } from "./ItReport.js";
 
 export class TestSuiteReport {
   private generateReportTree(testBlocks: TestBlock[]): any {
-    return testBlocks.map(testBlock => {
+    return testBlocks.map((testBlock) => {
       if (isDescribeBlock(testBlock)) {
         return {
           title: testBlock.description,
           type: TestBlockType.DESCRIBE,
-          children: this.generateReportTree(testBlock.children)
+          children: this.generateReportTree(testBlock.children),
         };
       } else {
         return new ItReport(testBlock as ItBlock, this.testSuite).generate();
@@ -71,7 +71,7 @@ export class TestSuiteReport {
 
   public tree: ReportResultTree = {
     title: "",
-    children: []
+    children: [],
   };
 
   public errors: ItReportError[] = [];

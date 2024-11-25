@@ -909,7 +909,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@j.u.p.iter/jtrun@workspace:."
   dependencies:
-    "@j.u.p.iter/scripts": "npm:^1.6.1"
+    "@j.u.p.iter/scripts": "npm:^1.7.1"
     ink: "npm:^5.0.1"
     react: "npm:^18.3.1"
   languageName: unknown
@@ -933,9 +933,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@j.u.p.iter/scripts@npm:^1.6.1":
-  version: 1.6.3
-  resolution: "@j.u.p.iter/scripts@npm:1.6.3"
+"@j.u.p.iter/scripts@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "@j.u.p.iter/scripts@npm:1.7.1"
   dependencies:
     "@eslint/js": "npm:^8.50.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.9.0"
@@ -962,7 +962,7 @@ __metadata:
     yargs-parser: "npm:^21.1.1"
   bin:
     jupiter-scripts: dist/index.js
-  checksum: f8494ceb8a218098c998be2950d7c7855fae2ae6c6524d85dcef06c3e52a4ef10cec2c4e466f087938dfa9b232efbaa88356337e2931aef37ee71581183b036e
+  checksum: a6f39813e7502b074ef19492a03cb79df26ddbad7edf1d1f344d49b9d5094dbccb1051acc8ac85a62c2098a9ee0e11ad481ef09da846217b5888172ae4b2651e
   languageName: node
   linkType: hard
 

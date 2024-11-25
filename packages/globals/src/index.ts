@@ -1,4 +1,4 @@
-import { It, Describe, Hook } from '@j.u.p.iter/jtrun-types';
+import { It, Describe, Hook } from "@j.u.p.iter/jtrun-types";
 
 export declare const it: It;
 

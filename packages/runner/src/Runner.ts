@@ -3,12 +3,19 @@
 import { EventManager } from "@j.u.p.iter/jtrun-event-manager";
 import { delay, isDescribeBlock } from "@j.u.p.iter/jtrun-helpers";
 import { TestSuite } from "@j.u.p.iter/jtrun-test-suite";
-import { ActionType, TestHook, TestHookType, TestSuiteStatus, TrunEvent, DescribeBlock } from "@j.u.p.iter/jtrun-types";
+import {
+  ActionType,
+  TestHook,
+  TestHookType,
+  TestSuiteStatus,
+  TrunEvent,
+  DescribeBlock,
+} from "@j.u.p.iter/jtrun-types";
 
 export class Runner {
   private runBeforeEachHooks(hooks: TestHook[]) {
     const resultHooks = hooks.filter(
-      ({ type }) => type === TestHookType.BEFORE_EACH
+      ({ type }) => type === TestHookType.BEFORE_EACH,
     );
 
     this.runHooks(resultHooks);
@@ -16,7 +23,7 @@ export class Runner {
 
   public runAfterEachHooks(hooks: TestHook[]) {
     const resultHooks = hooks.filter(
-      ({ type }) => type === TestHookType.AFTER_EACH
+      ({ type }) => type === TestHookType.AFTER_EACH,
     );
 
     this.runHooks(resultHooks);
@@ -43,14 +50,14 @@ export class Runner {
 
             testSuite.dispatch({
               type: ActionType.START_IT,
-              payload: { it: childTestBlock }
+              payload: { it: childTestBlock },
             });
 
             childTestBlock.fn();
 
             testSuite.dispatch({
               type: ActionType.FINISH_IT,
-              payload: { it: childTestBlock }
+              payload: { it: childTestBlock },
             });
 
             if (childTestBlock.parent) {
@@ -61,7 +68,7 @@ export class Runner {
 
             testSuite.dispatch({
               type: ActionType.FAIL_IT,
-              payload: { error, it: childTestBlock }
+              payload: { error, it: childTestBlock },
             });
           }
         }
@@ -99,7 +106,7 @@ export class Runner {
       TrunEvent.PARSE_TESTS_SUITES,
       (testsSuites: TestSuite[]) => {
         this.runTestsSuites(testsSuites);
-      }
+      },
     );
   }
 }

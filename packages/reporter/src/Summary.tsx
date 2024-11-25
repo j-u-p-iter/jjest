@@ -14,7 +14,7 @@ export const Summary: FC<SummaryProps> = ({
   passedAmountOfTestSuites,
   passedAmountOfTests,
   totalAmountOfTests,
-  duration
+  duration,
 }) => {
   return (
     <Box marginTop={1} flexDirection="column">

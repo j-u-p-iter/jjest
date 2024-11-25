@@ -12,12 +12,12 @@ export class CLI {
   private initialize() {
     this.commands.set(
       CommandName.INIT,
-      new InitCommand(this.program).initialize()
+      new InitCommand(this.program).initialize(),
     );
 
     this.commands.set(
       CommandName.RUN,
-      new RunCommand(this.program).initialize()
+      new RunCommand(this.program).initialize(),
     );
   }
 

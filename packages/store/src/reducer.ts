@@ -1,13 +1,13 @@
 import { Action, ActionType, ItStatus } from "@j.u.p.iter/jtrun-types";
 
-import { StoreState } from './types.js';
+import { StoreState } from "./types.js";
 
 export const reducer = (state: StoreState, action: Action) => {
   switch (action.type) {
-    case ActionType.START_DESCRIBE:
+    case ActionType.START_DESCRIBE: {
       const newDescribeBlock = {
         ...action.payload.describe,
-        parent: state.currentDescribeBlock
+        parent: state.currentDescribeBlock,
       };
 
       if (state.currentDescribeBlock) {
@@ -30,9 +30,11 @@ export const reducer = (state: StoreState, action: Action) => {
          */
         state.rootDescribeBlock = state.currentDescribeBlock;
       }
-      break;
 
-    case ActionType.FINISH_DESCRIBE:
+      break;
+    }
+
+    case ActionType.FINISH_DESCRIBE: {
       if (state.currentDescribeBlock?.parent) {
         state.currentDescribeBlock = state.currentDescribeBlock.parent;
       } else {
@@ -40,55 +42,68 @@ export const reducer = (state: StoreState, action: Action) => {
       }
 
       break;
+    }
 
-    case ActionType.RUN_IT:
+    case ActionType.RUN_IT: {
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.children.push({
           ...action.payload.it,
-          parent: state.currentDescribeBlock
+          parent: state.currentDescribeBlock,
         });
       } else {
         throw new Error(
-          "You should wrap the it with the describe block. Describe block is required."
+          "You should wrap the it with the describe block. Describe block is required.",
         );
       }
-      break;
 
-    case ActionType.RUN_BEFORE_EACH:
+      break;
+    }
+
+    case ActionType.RUN_BEFORE_EACH: {
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.hooks.push(action.payload.beforeEach);
       } else {
         throw new Error(
-          "You should wrap the beforeEach block with the describe block. Describe block is required."
+          "You should wrap the beforeEach block with the describe block. Describe block is required.",
         );
       }
-      break;
 
-    case ActionType.RUN_AFTER_EACH:
+      break;
+    }
+
+    case ActionType.RUN_AFTER_EACH: {
       if (state.currentDescribeBlock) {
         state.currentDescribeBlock.hooks.push(action.payload.afterEach);
       } else {
         throw new Error(
-          "You should wrap the afterEach block with the describe block. Describe block is required."
+          "You should wrap the afterEach block with the describe block. Describe block is required.",
         );
       }
-      break;
 
-    case ActionType.START_IT:
+      break;
+    }
+
+    case ActionType.START_IT: {
       action.payload.it.status = ItStatus.RUNS;
       action.payload.it.startTime = Date.now();
-      break;
 
-    case ActionType.FINISH_IT:
+      break;
+    }
+
+    case ActionType.FINISH_IT: {
       action.payload.it.status = ItStatus.PASSED;
       action.payload.it.finishTime = Date.now();
-      break;
 
-    case ActionType.FAIL_IT:
+      break;
+    }
+
+    case ActionType.FAIL_IT: {
       action.payload.it.status = ItStatus.FAILED;
       action.payload.it.finishTime = Date.now();
       action.payload.it.error = action.payload.error;
+
       break;
+    }
   }
 
   return state;

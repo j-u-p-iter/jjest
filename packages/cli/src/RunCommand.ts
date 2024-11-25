@@ -1,7 +1,11 @@
-import { Command as Program } from 'commander';
+import { Command as Program } from "commander";
 
 import { Trun } from "@j.u.p.iter/jtrun-trun";
-import { TrunConfig, TSConfig, TrunConfigOptions } from "@j.u.p.iter/jtrun-config";
+import {
+  TrunConfig,
+  TSConfig,
+  TrunConfigOptions,
+} from "@j.u.p.iter/jtrun-config";
 
 import { Command, CommandName } from "./Command.js";
 
@@ -24,7 +28,9 @@ export class RunCommand extends Command {
     this.trun.run(tsConfig, this.resolveOptions());
   }
 
-  private resolveOption(optionName: Exclude<typeof this.validOptions[number], 'config'>) {
+  private resolveOption(
+    optionName: Exclude<(typeof this.validOptions)[number], "config">,
+  ) {
     return this.commandOptions[optionName] || this.trunConfig?.[optionName];
   }
 
@@ -51,15 +57,15 @@ export class RunCommand extends Command {
       .command(this.name)
       .option(
         "-w, --watch",
-        "Enables watching mode (rerun tests on change the tests or the main code)"
+        "Enables watching mode (rerun tests on change the tests or the main code)",
       )
       .option(
         "-c, --config <pathToConfig>",
-        "Sets up a file's path to a config"
+        "Sets up a file's path to a config",
       )
       .option(
         "-ts, --tsconfig <pathToTSConfig>",
-        "Sets up a file's path to a typescript config"
+        "Sets up a file's path to a typescript config",
       );
 
     return this;

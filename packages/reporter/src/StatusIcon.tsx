@@ -10,12 +10,12 @@ const isWindows = isWindowsFn();
 
 const icons: { [key in VisibleStatus]: string } = {
   [ItStatus.PASSED]: isWindows ? "\u221A" : "\u2713",
-  [ItStatus.FAILED]: isWindows ? "\u00D7" : "\u2715"
+  [ItStatus.FAILED]: isWindows ? "\u00D7" : "\u2715",
 };
 
 const colors: { [key in VisibleStatus]: string } = {
   [ItStatus.PASSED]: "green",
-  [ItStatus.FAILED]: "red"
+  [ItStatus.FAILED]: "red",
 };
 
 interface StatusIconProps {
@@ -23,9 +23,5 @@ interface StatusIconProps {
 }
 
 export const StatusIcon: FC<StatusIconProps> = ({ status }) => {
-  return (
-    <Text color={colors[status]}>
-      {icons[status]}
-    </Text>
-  );
+  return <Text color={colors[status]}>{icons[status]}</Text>;
 };

@@ -9,10 +9,14 @@
   ],
   "repository": "git@github.com:j-u-p-iter/recursive-trun.git",
   "scripts": {
+    "publish:all": "yarn workspaces foreach -Apt npm publish",
+    "lint:all": "yarn workspaces foreach -Apt run lint",
     "build:all": "yarn workspaces foreach -Apt run build",
     "test:all": "yarn workspaces foreach -Ap run test",
+    "lint:changed": "yarn workspaces foreach --since -pt run lint",
     "build:changed": "yarn workspaces foreach --since -pt run build",
     "test:changed": "yarn workspaces foreach --since -pt run test",
+    "publish:changed": "yarn workspaces foreach --since -pt run npm publish",
     "build:test": "yarn workspace @j.u.p.iter/jtrun-test run build",
     "build:config": "yarn workspace @j.u.p.iter/jtrun-config run build",
     "build:scanner": "yarn workspace @j.u.p.iter/jtrun-scanner run build",
@@ -30,7 +34,7 @@
     "build:globals": "yarn workspace @j.u.p.iter/jtrun-globals run build"
   },
   "devDependencies": {
-    "@j.u.p.iter/scripts": "^1.6.1"
+    "@j.u.p.iter/scripts": "^1.7.1"
   },
   "packageManager": "yarn@4.0.1",
   "dependencies": {
