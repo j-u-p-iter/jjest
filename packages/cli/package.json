@@ -23,11 +23,8 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@j.u.p.iter/jtrun-config": "workspace:^",
-    "@j.u.p.iter/jtrun-trun": "workspace:^",
+    "@j.u.p.iter/jtrun-config": "workspace:*",
+    "@j.u.p.iter/jtrun-trun": "workspace:*",
     "commander": "^12.1.0"
-  },
-  "devDependencies": {
-    "semantic-release": "^24.2.0"
   }
 }

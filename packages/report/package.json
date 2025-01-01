@@ -19,8 +19,8 @@
     "publish": "npm publish"
   },
   "dependencies": {
+    "@j.u.p.iter/jtrun-helpers": "workspace:^",
     "@j.u.p.iter/jtrun-test-suite": "workspace:^",
-    "@j.u.p.iter/jtrun-types": "workspace:^",
-    "@j.u.p.iter/jtrun-helpers": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:^"
   }
 }

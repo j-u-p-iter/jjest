@@ -7,10 +7,9 @@
   "repository": "git@github.com:j-u-p-iter/trun.git",
   "scripts": {
     "lint:all": "pnpm --recursive run lint",
-    "build:all": "pnpm --recursive run build",
+    "build:all": "pnpm --recursive run --sequential build",
     "test:all": "pnpm --recursive run test --pass-with-no-tests",
     "validate:all": "pnpm --recursive run validate",
-
     "build:cli": "pnpm --filter @j.u.p.iter/jtrun-cli run build",
     "build:helpers": "pnpm --filter @j.u.p.iter/jtrun-helpers run build",
     "build:types": "pnpm --filter @j.u.p.iter/jtrun-types run build",
@@ -26,5 +25,5 @@
     "react": "^18.3.1",
     "semantic-release-monorepo": "^8.0.2"
   },
-  "packageManager": "pnpm@7.9.5"
+  "packageManager": "pnpm@9.15.2"
 }

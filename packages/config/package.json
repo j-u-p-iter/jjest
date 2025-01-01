@@ -19,9 +19,9 @@
     "publish": "npm publish"
   },
   "dependencies": {
-    "typescript": "^5.7.2",
     "@j.u.p.iter/find-path-to-file": "^1.0.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.3"
