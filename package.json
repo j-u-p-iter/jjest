@@ -8,7 +8,7 @@
   "scripts": {
     "lint:all": "pnpm --recursive run lint",
     "build:all": "pnpm --recursive run build",
-    "test:all": "pnpm --recursive run test",
+    "test:all": "pnpm --recursive run test --pass-with-no-tests",
     "validate:all": "pnpm --recursive run validate",
 
     "build:cli": "pnpm --filter @j.u.p.iter/jtrun-cli run build",

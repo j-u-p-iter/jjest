@@ -33,5 +33,8 @@ jobs:
       - name: Build packages
         run: pnpm build:all
 
-      - name: Validate packages:
-        run: pnpm validate:all
+      - name: Lint packages:
+        run: pnpm lint:all
+
+      - name: Test packages:
+        run: pnpm test:all
