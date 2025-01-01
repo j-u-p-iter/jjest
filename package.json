@@ -4,41 +4,26 @@
   "author": "j.u.p.iter",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "repository": "git@github.com:j-u-p-iter/recursive-trun.git",
+  "repository": "git@github.com:j-u-p-iter/trun.git",
   "scripts": {
-    "publish:all": "yarn workspaces foreach -Apt npm publish",
-    "lint:all": "yarn workspaces foreach -Apt run lint",
-    "build:all": "yarn workspaces foreach -Apt run build",
-    "test:all": "yarn workspaces foreach -Ap run test",
-    "lint:changed": "yarn workspaces foreach --since -pt run lint",
-    "build:changed": "yarn workspaces foreach --since -pt run build",
-    "test:changed": "yarn workspaces foreach --since -pt run test",
-    "publish:changed": "yarn workspaces foreach --since -pt run npm publish",
-    "build:test": "yarn workspace @j.u.p.iter/jtrun-test run build",
-    "build:config": "yarn workspace @j.u.p.iter/jtrun-config run build",
-    "build:scanner": "yarn workspace @j.u.p.iter/jtrun-scanner run build",
-    "build:event-manager": "yarn workspace @j.u.p.iter/jtrun-event-manager run build",
-    "build:types": "yarn workspace @j.u.p.iter/jtrun-types run build",
-    "build:store": "yarn workspace @j.u.p.iter/jtrun-store run build",
-    "build:test-suite": "yarn workspace @j.u.p.iter/jtrun-test-suite run build",
-    "build:parser": "yarn workspace @j.u.p.iter/jtrun-parser run build",
-    "build:helpers": "yarn workspace @j.u.p.iter/jtrun-helpers run build",
-    "build:runner": "yarn workspace @j.u.p.iter/jtrun-runner run build",
-    "build:report": "yarn workspace @j.u.p.iter/jtrun-report run build",
-    "build:reporter": "yarn workspace @j.u.p.iter/jtrun-reporter run build",
-    "build:trun": "yarn workspace @j.u.p.iter/jtrun-trun run build",
-    "build:cli": "yarn workspace @j.u.p.iter/jtrun-cli run build",
-    "build:globals": "yarn workspace @j.u.p.iter/jtrun-globals run build"
+    "lint:all": "pnpm --recursive run lint",
+    "build:all": "pnpm --recursive run build",
+    "test:all": "pnpm --recursive run test",
+    "validate:all": "pnpm --recursive run validate",
+
+    "build:cli": "pnpm --filter @j.u.p.iter/jtrun-cli run build",
+    "build:helpers": "pnpm --filter @j.u.p.iter/jtrun-helpers run build",
+    "build:types": "pnpm --filter @j.u.p.iter/jtrun-types run build",
+    "build:config": "pnpm --filter @j.u.p.iter/jtrun-config run build",
+    "build:trun": "pnpm --filter @j.u.p.iter/jtrun-config run build"
   },
   "devDependencies": {
-    "@j.u.p.iter/scripts": "^1.7.1"
+    "@j.u.p.iter/scripts": "^1.7.1",
+    "semantic-release": "^24.2.0"
   },
-  "packageManager": "yarn@4.0.1",
   "dependencies": {
     "ink": "^5.0.1",
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "semantic-release-monorepo": "^8.0.2"
   }
 }

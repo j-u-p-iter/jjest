@@ -15,10 +15,15 @@
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
     "test": "jupiter-scripts test",
+    "validate": "jupiter-scripts validate",
     "publish": "npm publish"
   },
   "dependencies": {
+    "typescript": "^5.7.2",
     "@j.u.p.iter/find-path-to-file": "^1.0.1",
     "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.3"
   }
 }

@@ -8,16 +8,26 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
     "test": "jupiter-scripts test",
+    "validate": "jupiter-scripts validate",
     "publish": "npm publish"
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-event-manager": "workspace:^",
-    "@j.u.p.iter/jtrun-test-suite": "workspace:^",
-    "@j.u.p.iter/jtrun-types": "workspace:^"
+    "@j.u.p.iter/jtrun-parser": "workspace:^",
+    "@j.u.p.iter/jtrun-reporter": "workspace:^",
+    "@j.u.p.iter/jtrun-runner": "workspace:^",
+    "@j.u.p.iter/jtrun-scanner": "workspace:^",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.3",
+    "typescript": "^5.7.2"
   }
 }

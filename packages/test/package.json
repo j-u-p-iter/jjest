@@ -8,11 +8,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "jupiter-scripts build",
-    "lint": "jupiter-scripts lint",
-    "test": "jupiter-scripts test"
-  },
   "dependencies": {
     "@j.u.p.iter/jtrun-event-manager": "workspace:^",
     "@j.u.p.iter/jtrun-scanner": "workspace:^",

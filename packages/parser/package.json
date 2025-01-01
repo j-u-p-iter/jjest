@@ -8,11 +8,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
     "test": "jupiter-scripts test",
+    "validate": "jupiter-scripts validate",
     "publish": "npm publish"
   },
   "dependencies": {

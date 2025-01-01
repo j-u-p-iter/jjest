@@ -18,11 +18,16 @@
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
     "test": "jupiter-scripts test",
-    "publish": "npm publish"
+    "validate": "jupiter-scripts validate",
+    "publish": "npm publish",
+    "release": "semantic-release"
   },
   "dependencies": {
-    "commander": "^12.1.0",
     "@j.u.p.iter/jtrun-config": "workspace:^",
-    "@j.u.p.iter/jtrun-trun": "workspace:^"
+    "@j.u.p.iter/jtrun-trun": "workspace:^",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0"
   }
 }
