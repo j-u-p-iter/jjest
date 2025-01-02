@@ -13,7 +13,7 @@ jobs:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
 
-    - name: Setup node:
+    - name: Setup node
       uses: actions/setup-node@v3
       with:
         node-version: 18.18.0
