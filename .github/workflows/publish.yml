@@ -40,5 +40,5 @@ jobs:
           commit: "chore: new release"
           title: "chore: new release candidate"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
