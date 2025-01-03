@@ -28,7 +28,7 @@ export class CLI {
     this.program.parse(process.argv);
   }
 
-  private execute() {
+  public execute() {
     /**
      * After we've parsed the process args, we have parsed results into the "this.program"
      *   to extract and use. In particularly we have command name and it's arguments in the "this.program.args".
