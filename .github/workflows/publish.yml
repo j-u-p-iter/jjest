@@ -8,9 +8,9 @@ on:
 jobs:
   publish:
     permissions:
-      contents: true
-      issues: true
-      pull-requests: true
+      contents: write
+      issues: write
+      pull-requests: write
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
