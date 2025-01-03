@@ -7,6 +7,11 @@ on:
 
 jobs:
   publish:
+    permissions:
+      contents: true
+      issues: true
+      pull-requests: true
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -26,8 +31,13 @@ jobs:
       - name: Build packages
         run: pnpm build:all
 
-      - name: Publish packages
-        run: pnpm -r publish --access public --no-git-checks
+      - name: Create release pull request and publish to NPM
+        uses: changesets/action@v1
+        with: 
+          publish: pnpm publish
+          version: pnpm version 
+          commit: "chore: new release"
+          title: "chore: new release candidate"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
