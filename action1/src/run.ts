@@ -386,6 +386,8 @@ export async function runVersion({
     .filter((x) => x)
     .sort(sortTheThings);
 
+  console.log("changedPackagesInfo:", changedPackagesInfo);
+
   let prBody = await getVersionPrBody({
     hasPublishScript,
     preState,
