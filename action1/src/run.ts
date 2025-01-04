@@ -316,6 +316,7 @@ export async function runVersion({
   prBodyMaxCharacters = MAX_CHARACTERS_PER_MESSAGE,
   branch,
 }: VersionOptions): Promise<RunVersionResult> {
+  console.log("TOKEN:", githubToken);
   const octokit = setupOctokit(githubToken);
 
   let repo = `${github.context.repo.owner}/${github.context.repo.repo}`;
