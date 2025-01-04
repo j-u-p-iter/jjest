@@ -32,7 +32,7 @@ jobs:
         run: pnpm build:all
 
       - name: Create release pull request and publish to NPM
-        uses: ../action/dist
+        uses: ./action1
         with: 
           version: pnpm version 
           publish: pnpm publish
