@@ -103,6 +103,7 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
       core.info("All changesets are empty; not creating PR");
       return;
     case hasChangesets:
+      console.log("githubToken:", githubToken);
       const { pullRequestNumber } = await runVersion({
         script: getOptionalInput("version"),
         githubToken,
@@ -117,6 +118,7 @@ const getOptionalInput = (name: string) => core.getInput(name) || undefined;
       return;
   }
 })().catch((err) => {
+  console.log("ERROR:", err);
   core.error(err);
   core.setFailed(err.message);
 });

@@ -1,7 +1,7 @@
 {
   "name": "@changesets/action",
   "version": "1.4.9",
-  "main": "dist/index.js",
+  "main": "dists/index.js",
   "license": "MIT",
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.2",
@@ -23,7 +23,7 @@
     "jest": "^29.5.0"
   },
   "scripts": {
-    "build": "ncc build src/index.ts -o dist --transpile-only --minify",
+    "build": "ncc build src/index.ts -o dists --transpile-only --minify",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "changeset": "changeset",
