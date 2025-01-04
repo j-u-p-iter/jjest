@@ -34,9 +34,8 @@ jobs:
       - name: Create release pull request and publish to NPM
         uses: changesets/action@v1
         with: 
-          branch: main
-          publish: pnpm publish
           version: pnpm version 
+          publish: pnpm publish
           commit: "chore: new release"
           title: "chore: new release candidate"
         env:
