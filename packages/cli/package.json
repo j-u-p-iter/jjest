@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-cli",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "CLI",
   "type": "module",
   "main": "dist/index.js",

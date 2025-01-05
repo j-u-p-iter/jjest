@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-globals",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Globals",
   "type": "module",
   "main": "dist/index.js",
