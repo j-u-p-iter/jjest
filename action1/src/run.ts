@@ -331,7 +331,9 @@ export async function runVersion({
   let versionsByDirectory = await getVersionsByDirectory(cwd);
 
   if (script) {
+    console.log("script:", script);
     let [versionCommand, ...versionArgs] = script.split(/\s+/);
+    console.log("versionCommand:", versionCommand);
     await exec(versionCommand, versionArgs, { cwd });
   } else {
     let changesetsCliPkgJson = requireChangesetsCliPkgJson(cwd);
