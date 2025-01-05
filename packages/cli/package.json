@@ -17,10 +17,7 @@
   "scripts": {
     "build": "jupiter-scripts build",
     "lint": "jupiter-scripts lint",
-    "test": "jupiter-scripts test",
-    "validate": "jupiter-scripts validate",
-    "publish": "npm publish",
-    "release": "semantic-release"
+    "test": "jupiter-scripts test"
   },
   "dependencies": {
     "@j.u.p.iter/jtrun-config": "workspace:*",
