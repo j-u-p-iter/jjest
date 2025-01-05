@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-test",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.0",
   "description": "Packages tester. Very useful to provide examples of how to use the packages and at the same time useful to test them.",
   "type": "module",
   "main": "dist/index.js",

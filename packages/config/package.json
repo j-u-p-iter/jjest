@@ -1,6 +1,6 @@
 {
   "name": "@j.u.p.iter/jtrun-config",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Config manager",
   "type": "module",
   "main": "dist/index.js",
