@@ -350,6 +350,7 @@ export async function runVersion({
     base: branch,
   });
   let changedPackages = await getChangedPackages(cwd, versionsByDirectory);
+  console.log("changedPackages:", changedPackages);
   let changedPackagesInfoPromises = Promise.all(
     changedPackages.map(async (pkg) => {
       let changelogContents = await fs.readFile(
