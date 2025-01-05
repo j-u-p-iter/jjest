@@ -22,6 +22,8 @@ export async function getChangedPackages(
   previousVersions: Map<string, string>
 ) {
   let { packages } = await getPackages(cwd);
+  console.log("packages:", packages);
+  console.log("previousVersions:", previousVersions);
   let changedPackages = new Set<Package>();
 
   for (let pkg of packages) {
