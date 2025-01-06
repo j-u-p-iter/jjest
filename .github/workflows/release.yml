@@ -1,9 +1,10 @@
-name: Publish
+name: Release
 
 on:
-  push:
-    branches:
-      - 'main'
+  workflow_run:
+    workflows: [Validate]
+    types:
+      - completed
 
 jobs:
   publish:
@@ -13,6 +14,7 @@ jobs:
       pull-requests: write
     timeout-minutes: 20
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -32,7 +34,7 @@ jobs:
         run: pnpm build:all
 
       - name: Create release pull request and publish to NPM
-        uses: ./action1
+        uses: changesets/action@v1
         with: 
           version: pnpm version:ci 
           publish: pnpm publish:ci
