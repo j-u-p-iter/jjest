@@ -39,7 +39,7 @@ jobs:
           version: pnpm version:ci 
           publish: pnpm publish:ci
           commit: "chore: new release"
-          title: "chore: new release candidate [skip ci]"
+          title: "chore: new release [skip ci]"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
