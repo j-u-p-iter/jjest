@@ -1,5 +1,11 @@
 # @j.u.p.iter/jtrun-helpers
 
+## 3.0.0
+
+### Major Changes
+
+- 8c85589: updates packages
+
 ## 2.0.0
 
 ### Major Changes

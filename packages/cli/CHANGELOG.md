@@ -1,5 +1,15 @@
 # @j.u.p.iter/jtrun-cli
 
+## 3.0.0
+
+### Major Changes
+
+- 8c85589: updates packages
+
+### Patch Changes
+
+- @j.u.p.iter/jtrun-trun@2.0.1
+
 ## 2.1.0
 
 ### Minor Changes

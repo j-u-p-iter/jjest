@@ -1,5 +1,12 @@
 # @j.u.p.iter/jtrun-trun
 
+## 2.0.1
+
+### Patch Changes
+
+- @j.u.p.iter/jtrun-reporter@2.0.1
+- @j.u.p.iter/jtrun-runner@2.0.1
+
 ## 2.0.0
 
 ### Major Changes
