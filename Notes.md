@@ -17,3 +17,11 @@ https://www.youtube.com/watch?v=qU5CKZRI4rk
 4. github actions.
 - What it is.
 - What flows it consists of and how they interact with each other.
+
+5. Describe the whole workflow of work with package:
+ - how to install dependencies
+ - how to update dependencies
+ - how to run every script
+ - how and when to run changeset
+
+ Provide an example based on some tiny commit.
