@@ -1,5 +1,12 @@
 # @j.u.p.iter/jtrun-runner
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [8c85589]
+  - @j.u.p.iter/jtrun-helpers@3.0.0
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @j.u.p.iter/jtrun-test
 
+## 1.0.0
+
+### Major Changes
+
+- 8c85589: updates packages
+
 ## 0.0.0
 
 ### Major Changes
