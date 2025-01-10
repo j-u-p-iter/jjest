@@ -7,8 +7,8 @@
   "repository": "git@github.com:j-u-p-iter/trun.git",
   "scripts": {
     "lint:all": "pnpm --recursive run lint",
-    "build:all": "pnpm --recursive run --sequential build",
     "test:all": "pnpm --recursive run test --pass-with-no-tests",
+    "build:all": "pnpm --recursive run --sequential build",
     "validate:all": "pnpm --recursive run validate",
     "build:cli": "pnpm --filter @j.u.p.iter/jtrun-cli run build",
     "build:helpers": "pnpm --filter @j.u.p.iter/jtrun-helpers run build",
@@ -17,12 +17,17 @@
     "build:trun": "pnpm --filter @j.u.p.iter/jtrun-config run build",
     "version:ci": "changeset version",
     "publish:ci": "changeset publish",
-    "changeset:create": "changeset"
+    "changeset:create": "changeset",
+    "commit": "jupiter-scripts commit",
+    "build": "pnpm build:all",
+    "lint": "jupiter-scripts lint",
+    "typecheck": "jupiter-scripts typecheck",
+    "test": "jupiter-scripts test --pass-with-no-tests"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
-    "@j.u.p.iter/scripts": "^1.7.1",
+    "@j.u.p.iter/scripts": "^1.9.0",
     "semantic-release": "^24.2.0"
   },
   "dependencies": {

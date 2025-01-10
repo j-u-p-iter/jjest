@@ -25,8 +25,8 @@ importers:
         specifier: ^2.27.11
         version: 2.27.11
       '@j.u.p.iter/scripts':
-        specifier: ^1.7.1
-        version: 1.8.0(@types/node@22.10.3)(ts-node@10.9.2(@types/node@22.10.3)(typescript@5.7.2))
+        specifier: ^1.9.0
+        version: 1.9.0(@types/node@22.10.3)(ts-node@10.9.2(@types/node@22.10.3)(typescript@5.7.2))
       semantic-release:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.7.2)
@@ -70,7 +70,7 @@ importers:
   packages/helpers:
     dependencies:
       '@j.u.p.iter/jtrun-types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
 
   packages/parser:
@@ -160,6 +160,9 @@ importers:
 
   packages/test:
     dependencies:
+      '@j.u.p.iter/jtrun-config':
+        specifier: workspace:^
+        version: link:../config
       '@j.u.p.iter/jtrun-event-manager':
         specifier: workspace:^
         version: link:../event-manager
@@ -668,8 +671,8 @@ packages:
   '@j.u.p.iter/recursive-read-dir@1.2.0':
     resolution: {integrity: sha512-uCAUIzWD1vj9lY/yrTsU+Bpg3fVsV3NM5PGzSWHsKF2zxXjH4CAu1CCDkuggnr3wXmqYYMGs8jYrpSECH7eXqw==}
 
-  '@j.u.p.iter/scripts@1.8.0':
-    resolution: {integrity: sha512-1s9DWPpP/cJVUBNS/2NOZqz01yfy1tQ1cEZ19rBm14RqVwwP/72lN9vuAPz+S8TX1t8sSziPBCLsuKWbRgckVw==}
+  '@j.u.p.iter/scripts@1.9.0':
+    resolution: {integrity: sha512-YD/R4vwFilUBFxTA/BDj/oR1HWeIZeqQXaSMIYSUxiBClFQaezA25Zk6V0mF5yB5ZdNlX3V6WccDaH3qc3+B0w==}
     hasBin: true
 
   '@jest/console@29.7.0':
@@ -4494,7 +4497,7 @@ snapshots:
     dependencies:
       '@j.u.p.iter/caller-path': 1.0.1
 
-  '@j.u.p.iter/scripts@1.8.0(@types/node@22.10.3)(ts-node@10.9.2(@types/node@22.10.3)(typescript@5.7.2))':
+  '@j.u.p.iter/scripts@1.9.0(@types/node@22.10.3)(ts-node@10.9.2(@types/node@22.10.3)(typescript@5.7.2))':
     dependencies:
       '@eslint/js': 8.57.1
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)

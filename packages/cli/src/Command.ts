@@ -4,7 +4,7 @@ export enum CommandName {
 }
 
 export class Command {
-  publi prepareOptions(
+  public prepareOptions(
     originalOptions: any,
     validOptions: any,
   ): { [key: string]: any } {

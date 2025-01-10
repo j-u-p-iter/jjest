@@ -17,6 +17,6 @@
     "test": "jupiter-scripts test"
   },
   "dependencies": {
-    "@j.u.p.iter/jtrun-types": "workspace:^"
+    "@j.u.p.iter/jtrun-types": "workspace:*"
   }
 }
